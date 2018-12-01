@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const queries = require('../db/queries/beauty_salon');
 
-const PATH = '/Users/artur/Desktop/Express/public/html';
+const PATH = `/media/olga/Work/BSUIR/public/html`;
+//const PATH = '/Users/artur/Desktop/Express/public/html';
 
 router.get('/registration', (req, res) => {
-  console.log('hgrte');
+  //console.log('hgrte');
 	res.sendFile(PATH + '/registration.html');
 });
 
