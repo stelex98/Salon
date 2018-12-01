@@ -1,0 +1,79 @@
+p {
+    padding-bottom: 20px;
+    color: white;
+}
+
+a, th, i{
+    cursor: pointer;
+}
+
+.exit,
+.nameAdmin,
+.addInf, 
+.mineReviewsList {
+   // margin-right: 5%;
+    border-radius: 3%;
+    padding: 5px;
+    &:hover {
+        background-color: rgba(101, 101, 103, 0.4);
+    }
+}
+
+.exit{
+    margin-top: -1px;
+    margin-left: 20%;
+}
+
+.mineReviewsList, .nameAdmin{
+    float: center;
+}
+
+
+.row {
+    .listAdmin {
+        width: 97%;
+        margin-left: 10px;
+        margin-top: 20px;
+        padding-bottom: 20px;
+    }
+    .mineReviews,
+    .mineSecondReviews, 
+    .addInformationTable {
+        background-color: white;
+    }
+    .mineSecondReviews {
+        margin-top: 170px;
+    }
+    width: 60%;
+    .reviewsTable {
+        margin-left: 10px;
+    }
+    .scrollDivServices {
+        overflow-y: scroll;
+        height: 70px;
+        width: 100px;
+        margin-top: 15px;
+    }
+    .date {
+        padding-right: 80px;
+        margin: 0 !important;
+    }
+    .datepicker {
+        margin-bottom: -5px !important;
+    }
+    .buttonAddInformationInnerTable{
+        float: right;
+        margin-bottom: 10px;
+    }
+    .tegPAddReviews{
+        margin-left: 77%;
+    }
+    .priceInput, .inputServices, .describeInputText{
+        z-index: 100 !important;
+    }
+
+}
+
+.footer-item {
+    height: 130px;
+}

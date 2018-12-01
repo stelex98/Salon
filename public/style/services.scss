@@ -1,0 +1,77 @@
+a {
+  text-decoration: none !important;
+}
+
+.main-container-reviews {
+    height: 100vh;
+    .inner-header-item {
+        .logo {
+            img {
+                height: 90px !important;
+                margin-left: 30% !important;
+            }
+        }
+    }
+
+    .main-header-item-reviews {
+        background-image: url(../picture/service/bg_image.jpg) !important;
+        min-height: 110vh !important;
+        max-height: 945px !important;
+
+        .list-services {
+            width: 20%;
+            margin: 6% 0 10px 6%;
+            display: inline-block;
+
+            .hairdressing-services,
+            .spa-services,
+            .massage-services,
+            .cosmetology-services,
+            .makeup-services,
+            .eyebrows-eyelashes-services,
+            .nail-design-services {
+                padding-bottom: 30px;
+                color: #ffffff;
+            }
+        }
+
+        .main-menu-item {
+            a div {
+                color: white;
+                height: 100%;
+            }
+        }
+
+        .auth-registr {
+            a {
+                color: white !important;
+            }
+        }
+
+        .infromation-block {
+            width: 50%;
+            height: 600px;
+            display: block;
+            margin-left: 45%;
+            margin-top: -740px;
+        }
+
+        .card {
+            background-color: rgba(176, 52, 193, 0.6);
+        }
+
+        .select-wrapper input.select-dropdown {
+            color: #ffffff;
+        }
+
+        .dropdown-content li>a,
+        .dropdown-content li>span {
+            color: #000000;
+        }
+    }
+}
+
+.footer-item {
+    margin-top: 0px !important;
+    height: 100px;
+}

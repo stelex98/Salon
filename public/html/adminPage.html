@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="../style/materialize.min.css" media="screen,projection" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link rel="stylesheet" href="../style/services.css">
+    <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/prices.css">
+    <link rel="stylesheet" href="../style/contacts.css">
+    <link rel="stylesheet" href="../style/adminPage.css">
+
+    <script defer src="../script/services.js"></script>
+    <script defer type="text/javascript" src="../script/materialize.min.js"></script>
+    <script defer src="../script/prices.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script defer src="../script/adminPage.js"></script>
+    <script defer src="../script/jquery.tablesorter.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <div class="main-container-reviews">
+        <div class="main-header-item-reviews">
+            <div class="inner-header-item">
+                <div class="location">
+                    <ul class="list-location">
+                        <li><a href="#">{{place}}</a></li>
+                        <li><a href="#">{{phone}}</a></li>
+                        <li><a href="#">{{place}}</a></li>
+                        <li><a href="#">{{phone}}</a></li>
+                    </ul>
+                </div>
+                <div class="logo">
+                    <img src="../picture/main/logi.png" alt="Logotype">
+                </div>
+                <div class="auth-registr">
+                    <a id='addInf' class="addInf" v-on:click="showAddInf" href="#">{{addInf}}</a>
+                    <a id='mineReviewsList' class="mineReviewsList" v-on:click="showMineAndAllReviews" href="#">{{mineReviewsList}}</a>
+                    <a id='nameAdmin' class="nameAdmin" href="#">{{nameAdmin}}</a>
+                    <a id='exit' class="exit" href="#">{{exit}}</a>
+                </div>
+            </div>
+            <div class="main-menu-item">
+                <a href="/">
+                    <div class="main-title">{{mainPage}}</div>
+                </a>
+                <a href="/services">
+                    <div class="services-title">{{servicesPage}}</div>
+                </a>
+                <a href="/prices">
+                    <div class="price-title">{{pricePage}}</div>
+                </a>
+                <a href="/reviews">
+                    <div class="reviews-title">{{reviewsPage}}</div>
+                </a>
+                <a href="/contacts">
+                    <div class="contacts-title">{{contactPage}}</div>
+                </a>
+                <a onclick='return recording(this);'>
+                    <div class="record-item">{{recordPage}}</div>
+                </a>
+            </div>
+
+            <div class="row" id="myRow">
+                <div class="blockReviewsAdmin" v-show="seen">
+                    <div class="col 12 listAdmin">
+                        <ul class="tabs">
+                            <li class="tab col s6"><a href="#test1">{{mineReviews}}</a></li>
+                            <li class="tab col s6"><a href="#test2">{{allReviews}}</a></li>
+                        </ul>
+                    </div>
+                    <div id="test1" class="col s12">
+                        <div class="listAdmin col s12 ">
+                            <table id="myTable" class="mineReviews tablesorter highlight centered myReviews">
+                                <thead>
+                                    <tr>
+                                        <th>{{number}}</th>
+                                        <th>{{reviews}}</th>
+                                        <th>{{lastfirstName}}</th>
+                                        <th>{{date}}</th>
+                                        <th>{{time}}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Джон</td>
+                                        <td>jsmith@gmail.com</td>
+                                        <td>$50.00</td>
+                                        <td>http://www.jsmith.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Франк</td>
+                                        <td>fbach@yahoo.com</td>
+                                        <td>$40.00</td>
+                                        <td>http://www.frank.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Джейсон</td>
+                                        <td>jdoe@hotmail.com</td>
+                                        <td>$100.00</td>
+                                        <td>http://www.jdoe.com</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Тим</td>
+                                        <td>tconway@earthlink.net</td>
+                                        <td>$50.00</td>
+                                        <td>http://www.timconway.com</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="test2" class="col s12">
+
+                        <div class="col s3">
+                            <p>Услуги</p>
+                            <div class="scrollDivServices">
+                                <label>
+                                    <input type="checkbox" class="filled-in" checked="" />
+                                    <span>SPA</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="filled-in" />
+                                    <span>Массаж</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="filled-in" />
+                                    <span>Макияж</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="col s3">
+                            <p>ФИО Мастера</p>
+                            <div class="scrollDivServices">
+                                <label>
+                                    <input type="checkbox" class="filled-in" checked="" />
+                                    <span>SPA</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="filled-in" />
+                                    <span>Массаж</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="filled-in" />
+                                    <span>Макияж</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col s3 date">
+                            <p class="center-align">Дата</p>
+                            <input type="text" class="datepicker">
+                            <input type="text" class="datepicker">
+                        </div>
+                        <div class="col s3">
+                            <p>Время</p>
+                            <div class="scrollDivServices">
+                                <label>
+                                    <input type="checkbox" class="filled-in" checked="" />
+                                    <span>SPA</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="filled-in" />
+                                    <span>Массаж</span>
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="filled-in" />
+                                    <span>Макияж</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <table id="myTable2" class="mineSecondReviews tablesorter highlight centered myReviews">
+                            <thead>
+                                <tr>
+                                    <th>{{number}}</th>
+                                    <th>{{reviews}}</th>
+                                    <th>{{lastfirstName}}</th>
+                                    <th>{{date}}</th>
+                                    <th>{{time}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Джон</td>
+                                    <td>jsmith@gmail.com</td>
+                                    <td>$50.00</td>
+                                    <td>http://www.jsmith.com</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Франк</td>
+                                    <td>fbach@yahoo.com</td>
+                                    <td>$40.00</td>
+                                    <td>http://www.frank.com</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Джейсон</td>
+                                    <td>jdoe@hotmail.com</td>
+                                    <td>$100.00</td>
+                                    <td>http://www.jdoe.com</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>Тим</td>
+                                    <td>tconway@earthlink.net</td>
+                                    <td>$50.00</td>
+                                    <td>http://www.timconway.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="addInfromationOnPage" v-show="seen2">
+                    <div class="listAdmin col s12 ">
+                        <p class="tegPAddReviews">Добавить услугу:
+                            <a class="buttonAddInformationInnerTable modal-trigger btn-floating btn-small waves-effect waves-light"
+                                href="#modal1">
+                                <i class="material-icons" onclick="addNewServices(event)">add</i>
+                            </a>
+                        </p>
+
+                        <!-- Modal Structure -->
+                        <div id="modal1" class="modal">
+                            <div class=" modal-content">
+                                <div class="inputServices input-field col s6">
+                                    <input placeholder="Placeholder" id="services" type="text" class="validate inputServices">
+                                    <label for="services">Услуга</label>
+                                </div>
+                                <div class="priceInput input-field col s6">
+                                    <input placeholder="Placeholder" id="price" type="text" class="validate inputPrice">
+                                    <label for="price">Цена</label>
+                                </div>
+                                <div class="describeInputText input-field col s12">
+                                    <textarea placeholder="Placeholder" id="describeText" class="materialize-textarea inputDescribe"></textarea>
+                                    <label for="describeText">Описание услуги</label>
+                                </div>
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>File</span>
+                                        <input type="file" multiple="">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <a href="#!" class="addNewInformation modal-close waves-effect waves-green btn-flat"
+                                    onclick="checkButtonToAdd(event)">Добавить</a>
+                                <a href="#!" class="cancelButton modal-close waves-effect waves-green btn-flat" onclick="checkButtonCancel(event)">Отмена</a>
+                            </div>
+                        </div>
+                        <table id="myTable3" class="addInformationTable tablesorter highlight  myReviews">
+                            <thead>
+                                <tr>
+                                    <th>{{reviews}}</th>
+                                    <th>{{price}}</th>
+                                    <th>{{desicribeRev}}</th>
+                                    <th>{{deleteRev}}</th>
+                                    <th>{{editRev}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>SPA рук</td>
+                                    <td>120</td>
+                                    <td>jsmith@gmail.com</td>
+                                    <td><i onclick="deleteInformation(event)" class="small material-icons">delete</i></td>
+                                    <td onclick="changeInformation(event)"><i class="small material-icons modal-trigger"
+                                            href="#modal1">edit</i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="footer-item">
+                <div class="teg-item">
+                    <p>{{titleName}}</p>
+                    <p>{{nameSalon}}</p>
+                </div>
+                <div class="numbers-links-item">
+                    <p>{{phone}}</p>
+                    <ul>
+                        <li> <a href="#">{{linkVk}}</a></li>
+                        <li> <a href="#">{{linkInst}}</a></li>
+                    </ul>
+                </div>
+                <div class="name-company-item">
+                    <p>{{titleDev}}</p>
+                    <p>{{nameDeveloper}}</p>
+                </div>
+            </div>
+        </div>
+
+</body>
+
+</html>

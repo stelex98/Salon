@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script defer src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script defer src="main.js"></script>
+    <title>Document</title>
+</head>
+<body>
+   <div class="myApp">
+       {{value}}
+       <input type="text" v-model="valueInput">
+       <button @click="firstFunc">Add</button>
+       <ul>
+           <li v-for="el in array">
+                {{el}}
+           </li>
+       </ul>
+   </div> 
+</body>
+</html>

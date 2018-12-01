@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="../style/main.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <title>Reviews</title>
+</head>
+
+<body>
+    <div class="main-container-reviews">
+        <div class="main-header-item-reviews">
+            <div class="inner-header-item">
+                <div class="location">
+                    <ul class="list-location">
+                        <li><a href="#">МИНСК, ПР-Т НЕЗАВИСИМОСТИ 93</a></li>
+                        <li><a href="#">+375 (29) 618-35-05</a></li>
+                        <li><a href="#">МИНСК, ПР-Т НЕЗАВИСИМОСТИ 93</a></li>
+                        <li><a href="#">375 (29) 618-35-05</a></li>
+                    </ul>
+                </div>
+                <div class="logo">
+                    <img src="../picture/main/logi.png" alt="Logotype">
+                </div>
+                    <div class="auth-registr">
+                        <a id='auth' onclick='return openAuthorization(this);'>Авторизация</a>
+                        <a id='reg' href="/registration">Регистрация</a>
+                    </div>
+                </div>
+                 <div class="main-menu-item">
+                    <a href="/"> <div class="main-title">Главная</div></a>
+                    <a href="/services"><div class="services-title">Услуги</div></a>
+                    <a href="/prices"><div class="price-title">Цены</div></a>
+                    <a href="/reviews"><div class="reviews-title">Отзывы</div></a>
+                    <a href="/contacts"><div class="contacts-title">Контакты</div></a>
+                    <a onclick='return recording(this);'><div class="record-item">Запись</div></a>
+                </div>
+                <div class="block-reviews-item">
+                    <div class="describe-item">
+                        <p>Отзывы</p>
+                    </div>
+                    <div class="btn-addReviews-onlineReviews">
+                        <a id='rev'  class="addReviews" onclick='return addReview(this);'>
+                            Оставить отзыв
+                        </a>
+                    </div>
+                    <div class="listReviews" id="idListReviews">
+                    </div>
+                </div>
+                <button class="anyReviews">&rarr;</button>
+            </div>
+            <div class="footer-item">
+                <div class="teg-item">
+                    <p>© Косметический салон</p>
+                    <p>"VISAVIS"</p>
+                </div>
+                <div class="numbers-links-item">
+                    <p>+375 (29) 179-98-11; +375 (25) 741-06-84</p>
+                    <ul>
+                        <li> <a href="#">vk</a></li>
+                        <li> <a href="#">inst</a></li>
+                    </ul>
+                </div>
+                <div class="name-company-item">
+                    <p>Разработка сайта</p>
+                    <p>Olga Gretchenko</p>
+                </div>
+            </div>
+        </div>
+        <div id="overlay"></div>
+        <div id="popup">
+            <div class="reviewsOk">
+                <p class="reviewTextForm">Отзыв</p>
+                <textarea name="" id="text_review" class="reviewsText" cols="25" rows="8"></textarea>
+                <button id="send" class="addReviews">Добавить отзыв</button>
+                <button class="CancelAddReviews" onclick="cancel()">Отмена</button>
+            </div>
+
+            <div id='guest' class="popupError">
+                <p class="textError">Только зарегистрированные пользователи могут оставить отзыв!</p>
+                <button class="CancelAddReviews" onclick="cancel()">ОК</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script src="../script/reviews.js"></script>
+</html>

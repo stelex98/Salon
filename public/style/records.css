@@ -1,0 +1,71 @@
+select {
+  display: block !important;
+}
+
+.input-field.col.s6.choose-service{
+  margin-left: 90px !important;
+}
+
+.input-field.col.s6.choose-master{
+  margin-left: 90px !important;
+}
+
+
+.select-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%; }
+
+.container {
+  padding: 20px;
+  margin-top: 100px !important;
+  width: 470px !important;
+  border: 2px solid #000000;
+  border-radius: 10px; }
+
+.datepicker {
+  width: 47% !important;
+  margin-left: 25% !important;
+  color: black !important; }
+
+label {
+  margin-left: 10px !important;
+  color: #000000 !important; }
+
+.row.first {
+  margin-left: 15px !important; }
+
+.row.second {
+  margin-left: 5px !important; }
+
+.btn.waves-effect.waves-light {
+  margin-left: 12%; }
+
+body {
+  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+  background-size: 300% 300%;
+  -webkit-animation: Gradient 15s ease infinite;
+  -moz-animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite; }
+
+@-webkit-keyframes Gradient {
+  0% {
+    background-position: 0% 50%; }
+  50% {
+    background-position: 100% 50%; }
+  100% {
+    background-position: 0% 50%; } }
+@-moz-keyframes Gradient {
+  0% {
+    background-position: 0% 50%; }
+  50% {
+    background-position: 100% 50%; }
+  100% {
+    background-position: 0% 50%; } }
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%; }
+  50% {
+    background-position: 100% 50%; }
+  100% {
+    background-position: 0% 50%; } }

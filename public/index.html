@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+   
+
+    <title>The ROYAL</title>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="main-header-item">
+            <div class="inner-header-item">
+                <div class="location">
+                    <ul class="list-location">
+                        <li><a href="#">МИНСК, ПР-Т НЕЗАВИСИМОСТИ 93</a></li>
+                        <li><a href="#">+375 (29) 618-35-05</a></li>
+                        <li><a href="#">МИНСК, ПР-Т НЕЗАВИСИМОСТИ 93</a></li>
+                        <li><a href="#">375 (29) 618-35-05</a></li>
+                    </ul>
+                </div>
+                <div class="logo">
+                    <img src="picture/main/logi.png" alt="Logotype">
+                </div>
+                    <div class="auth-registr">
+                        <a id='auth' onclick='return openAuthorization(this);'>Авторизация</a>
+                        <a id='reg' href="/registration">Регистрация</a>
+                    </div>
+                </div>
+                <div class="main-menu-item">
+                    <a href="/"> <div class="main-title">Главная</div></a>
+                    <a href="/services"><div class="services-title">Услуги</div></a>
+                    <a href="/prices"><div class="price-title">Цены</div></a>
+                    <a href="/reviews"><div class="reviews-title">Отзывы</div></a>
+                    <a href="/contacts"><div class="contacts-title">Контакты</div></a>
+                    <a onclick='return recording(this);'><div class="record-item">Запись</div></a>
+                </div>
+                <div class="big-phrase-item">
+                    <p>Красота</p>
+                    <br>
+                    <p>— это вечность, длящаяся мгновение.</p>
+                </div>
+            </div>
+            <div class="block-description-item">
+                <p>Наши услуги</p>
+            </div>
+            <div class="our-services-item">
+                <a href="#">
+                <div class="hairdressers-item">
+                    <div class="image">
+                        <img src="picture/main/hairdressers.jpg" alt="Hairdressers">
+                            </div>
+                        <div class="text">
+                            <p class="title">Парикмахерские</p>
+                            <p class="describe">- стрижка <br> - окраска <br> - мелирование <br> - колорирование <br> - и многое другое </p>
+                        </div>
+                    </div>
+              </a>
+                <a href="#">
+                    <div class="SPA-item">
+                        <div class="image">
+                            <img src="picture/main/SPA.jpg" alt="Spa">
+                           </div>
+                            <div class="text">
+                                <p class="title">SPA и массаж</p>
+                                <p class="describe">- для лица <br> - для тела <br> - для рук и ног <br> - уход за волосами <br> - и многое другое</p>
+                            </div>
+                        </div>
+                </a>
+                <a href="#">
+                        <div class="nail-care-item">
+                            <div class="image">
+                                <img src="picture/main/nailCare.jpg" alt="Naile care">
+                            </div>
+                                <div class="text">
+                                    <p class="title">Уход за ногтями</p>
+                                    <p class="describe">- наращивание ногтей <br> - маникюр <br> - педикюр <br> - коррекция <br> - и многое другое</p>
+                                </div>
+                            </div>
+                </a>
+                <a href="#">
+                            <div class="cosmetology-item">
+                                <div class="image">
+                                    <img src="picture/main/cosmetology.jpg" alt="Cosmetology">
+                                </div>
+                                    <div class="text">
+                                        <p class="title">Косметология и макияж</p>
+                                        <p class="describe">- чистка лица <br> - пилинг <br> - депиляция <br> - уход <br> - и многое другое</p>
+                                    </div>
+                                </div>
+                </a>
+            </div>
+            <div class="reviews-item">
+                <div class="information-and-button-item">
+                    <h2>Отзывы любимых клиентов</h2>
+                    <a onclick='return addReview(this);' id='rev' class="add-reviews">Добавить отзыв</a>
+                    <a href="/reviews" class="wathing-reviews">Все отзывы</a>
+                </div>
+                <div class="slider">
+                    <div class=" review">
+                        <div class="inner0">
+
+                        </div>
+                    </div>
+                    <div class=" review">
+                        <div class="inner1">
+
+                        </div>
+                    </div>
+                    <div class=" review">
+                        <div class="inner2">
+
+                        </div>
+                    </div>
+                    <div class=" review">
+                        <div class="inner3">
+
+                        </div>
+                    </div>
+                    <div class=" review">
+                        <div class="inner4">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-item">
+                <div class="teg-item">
+                    <p>© Косметический салон</p>
+                    <p>"VISAVIS"</p>
+                </div>
+                <div class="numbers-links-item">
+                    <p>+375 (29) 179-98-11; +375 (25) 741-06-84</p>
+                    <ul>
+                        <li> <a href="#">vk</a></li>
+                        <li> <a href="#">inst</a></li>
+                    </ul>
+                </div>
+                <div class="name-company-item">
+                    <p>Разработка сайта</p>
+                    <p>Olga Gretchenko</p>
+                </div>
+            </div>
+            <div id="overlay"></div>
+            <div id="authorization-div">
+                <form action="javascript:void(0);" method="get">
+                    <fieldset class="clearfix">
+                        <p><span class="fontawesome-user">&#128273;</span>
+                        <input type="text" id='login' placeholder="Username" required></p> 
+                        <p><span class="fontawesome-lock">&#128274;</span>
+                        <input type="password" id='password' placeholder="Password" required></p> 
+                        <p><button id='enter' onclick='enterClick()'>ВОЙТИ</button></p>
+                    </fieldset>
+                </form>
+                <p><a href="#">Забыли пароль?</a>&nbsp;&nbsp;<a href="/registration">Регистрация</a><span class="fontawesome-arrow-right"></span></p>
+            </div>
+        </div>
+        
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script src="script/main.js"></script>
+
+</html>

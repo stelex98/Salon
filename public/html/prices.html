@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="../style/materialize.min.css" media="screen,projection" />
+    <link rel="stylesheet" href="../style/services.css">
+    <link rel="stylesheet" href="../style/main.css">
+    <link rel="stylesheet" href="../style/prices.css">
+
+    <script defer src="../script/services.js"></script>
+    <script defer type="text/javascript" src="../script/materialize.min.js"></script>
+    <script defer src="../script/prices.js"></script>
+</head>
+
+<body>
+    <div class="main-container-reviews">
+        <div class="main-header-item-reviews">
+            <div class="inner-header-item">
+                <div class="location">
+                    <ul class="list-location">
+                        <li><a href="#">МИНСК, ПР-Т НЕЗАВИСИМОСТИ 93</a></li>
+                        <li><a href="#">+375 (29) 618-35-05</a></li>
+                        <li><a href="#">МИНСК, ПР-Т НЕЗАВИСИМОСТИ 93</a></li>
+                        <li><a href="#">375 (29) 618-35-05</a></li>
+                    </ul>
+                </div>
+                <div class="logo">
+                    <img src="../picture/main/logi.png" alt="Logotype">
+                </div>
+                    <div class="auth-registr">
+                        <a id='auth' onclick='return openAuthorization(this);'>Авторизация</a>
+                        <a id='reg' href="/registration">Регистрация</a>
+                    </div>
+                </div>
+                <div class="main-menu-item">
+                    <a href="/"> <div class="main-title">Главная</div></a>
+                    <a href="/services"><div class="services-title">Услуги</div></a>
+                    <a href="/prices"><div class="price-title">Цены</div></a>
+                    <a href="/reviews"><div class="reviews-title">Отзывы</div></a>
+                    <a href="/contacts"><div class="contacts-title">Контакты</div></a>
+                    <a onclick='return recording(this);'><div class="record-item">Запись</div></a>
+                </div>
+                <div class="list-services">
+                    <div class="hairdressing-services input-field col s12">
+                        <select id="hairdressing" onchange="getValueOfElement(this.value)">
+                            <option value="" disabled selected>Выбор услуги</option>
+                            <option value="1">СПА-процедуры</option>
+                            <option value="2">Массаж</option>
+                            <option value="3">Косметолгия</option>
+                            <option value="4">Макияж</option>
+                            <option value="5">Брови и ресницы</option>
+                            <option value="6">Нейл-дизайн</option>
+                            <option value="7">Парикмахерские услуги</option>
+                        </select>
+                        <label>Наши услуги</label>
+                    </div>
+                </div>
+                <div class="infromation-block">
+                    <table class="highlight centered">
+                        <thead>
+                            <tr>
+                                <th>Name services</th>
+                                <th>Item Price</th>
+                            </tr>
+                        </thead>
+                        <tbody id="priceTable">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="footer-item">
+                    <div class="teg-item">
+                        <p>© Косметический салон</p>
+                        <p>"The Royal"</p>
+                    </div>
+                    <div class="numbers-links-item">
+                        <p>+375 (29) 179-98-11 +375 (25) 741-06-84</p>
+                        <ul>
+                            <li> <a href="#">vk</a></li>
+                            <li> <a href="#">inst</a></li>
+                        </ul>
+                    </div>
+                    <div class="name-company-item">
+                        <p>Разработка сайта</p>
+                        <p>Adamovich Artur</p>
+                    </div>
+                </div>
+            </div>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+p {
+  padding-bottom: 20px;
+  color: white; }
+
+a, th, i {
+  cursor: pointer; }
+
+.exit,
+.nameAdmin,
+.addInf,
+.mineReviewsList {
+  border-radius: 3%;
+  padding: 5px; }
+  .exit:hover,
+  .nameAdmin:hover,
+  .addInf:hover,
+  .mineReviewsList:hover {
+    background-color: rgba(101, 101, 103, 0.4); }
+
+.exit {
+  margin-top: -1px;
+  margin-left: 20%; }
+
+.mineReviewsList, .nameAdmin {
+  float: center; }
+
+.row {
+  width: 60%; }
+  .row .listAdmin {
+    width: 97%;
+    margin-left: 10px;
+    margin-top: 20px;
+    padding-bottom: 20px; }
+  .row .mineReviews,
+  .row .mineSecondReviews,
+  .row .addInformationTable {
+    background-color: white; }
+  .row .mineSecondReviews {
+    margin-top: 170px; }
+  .row .reviewsTable {
+    margin-left: 10px; }
+  .row .scrollDivServices {
+    overflow-y: scroll;
+    height: 70px;
+    width: 100px;
+    margin-top: 15px; }
+  .row .date {
+    padding-right: 80px;
+    margin: 0 !important; }
+  .row .datepicker {
+    margin-bottom: -5px !important; }
+  .row .buttonAddInformationInnerTable {
+    float: right;
+    margin-bottom: 10px; }
+  .row .tegPAddReviews {
+    margin-left: 77%; }
+  .row .priceInput, .row .inputServices, .row .describeInputText {
+    z-index: 100 !important; }
+
+.footer-item {
+  height: 130px; }

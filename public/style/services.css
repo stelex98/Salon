@@ -1,0 +1,47 @@
+a {
+  text-decoration: none !important; }
+
+.main-container-reviews {
+  height: 100vh; }
+  .main-container-reviews .inner-header-item .logo img {
+    height: 90px !important;
+    margin-left: 30% !important; }
+  .main-container-reviews .main-header-item-reviews {
+    background-image: url(../picture/service/bg_image.jpg) !important;
+    min-height: 110vh !important;
+    max-height: 945px !important; }
+    .main-container-reviews .main-header-item-reviews .list-services {
+      width: 20%;
+      margin: 6% 0 10px 6%;
+      display: inline-block; }
+      .main-container-reviews .main-header-item-reviews .list-services .hairdressing-services,
+      .main-container-reviews .main-header-item-reviews .list-services .spa-services,
+      .main-container-reviews .main-header-item-reviews .list-services .massage-services,
+      .main-container-reviews .main-header-item-reviews .list-services .cosmetology-services,
+      .main-container-reviews .main-header-item-reviews .list-services .makeup-services,
+      .main-container-reviews .main-header-item-reviews .list-services .eyebrows-eyelashes-services,
+      .main-container-reviews .main-header-item-reviews .list-services .nail-design-services {
+        padding-bottom: 30px;
+        color: #ffffff; }
+    .main-container-reviews .main-header-item-reviews .main-menu-item a div {
+      color: white;
+      height: 100%; }
+    .main-container-reviews .main-header-item-reviews .auth-registr a {
+      color: white !important; }
+    .main-container-reviews .main-header-item-reviews .infromation-block {
+      width: 50%;
+      height: 600px;
+      display: block;
+      margin-left: 45%;
+      margin-top: -740px; }
+    .main-container-reviews .main-header-item-reviews .card {
+      background-color: rgba(176, 52, 193, 0.6); }
+    .main-container-reviews .main-header-item-reviews .select-wrapper input.select-dropdown {
+      color: #ffffff; }
+    .main-container-reviews .main-header-item-reviews .dropdown-content li > a,
+    .main-container-reviews .main-header-item-reviews .dropdown-content li > span {
+      color: #000000; }
+
+.footer-item {
+  margin-top: 0px !important;
+  height: 100px; }

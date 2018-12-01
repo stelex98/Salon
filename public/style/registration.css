@@ -1,0 +1,57 @@
+/*registration*/
+.form-registration-item {
+  width: 300px;
+  margin: auto;
+  border: 1px solid #905B8F;
+  border-radius: 2%;
+  margin-top: 5%;
+  height: 520px;
+  background-color: rgba(199, 142, 195, 0.5); }
+  .form-registration-item input {
+    margin-left: 70px;
+    padding-left: 10px;
+    margin-top: 5%;
+    width: 150px;
+    height: 30px;
+    border-radius: 5%;
+    border: 1px solid #905B8F;
+    font-family: 'Cormorant', serif;
+    font-size: 15px; }
+  .form-registration-item .registration-start,
+  .form-registration-item .registration-cancel {
+    margin-left: 5px;
+    height: 30px;
+    border: 1px solid black;
+    margin-top: 5%;
+    padding: 5px;
+    font-family: 'Cormorant', serif;
+    font-size: 15px;
+    border-radius: 5px; }
+  .form-registration-item .registration-cancel {
+    margin-left: 1px;
+    width: 113px; }
+  .form-registration-item .photo-reg {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1; }
+  .form-registration-item .photo-reg + label {
+    font-size: 1em;
+    font-weight: 100;
+    border-radius: 10px;
+    padding: 5px;
+    width: 200px;
+    background-color: rgba(199, 142, 195, 0.5);
+    margin-left: 50px;
+    color: #555561;
+    margin-top: 5%;
+    font-family: 'Cormorant', serif;
+    display: inline-block; }
+  .form-registration-item .photo-reg:focus + label,
+  .form-registration-item .photo-reg + label:hover {
+    background-color: rgba(199, 142, 195, 0.9); }
+  .form-registration-item .photo-reg + label {
+    cursor: pointer;
+    /* "hand" cursor */ }
