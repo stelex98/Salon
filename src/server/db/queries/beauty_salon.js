@@ -16,7 +16,7 @@ function getGroups() {
 
 //+
 function getServices() {
-	return knex.select().from('service').orderBy('id_group');
+	return knex.select('service.id', 'service.service', 'service.id_group', 'group.group').join('group', 'service.id_group', 'group.id').from('service').orderBy('id_group');
 }
 
 function getServiceGroup() {
