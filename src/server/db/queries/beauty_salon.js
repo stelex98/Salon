@@ -15,13 +15,8 @@ function getGroups() {
 }
 
 //+
-function getServices_Group() {
-	return knex.select().from('service');
-}
-
-//+
 function getServices() {
-	return knex.select('service.id', 'service.service', 'group.group').join('group', 'service.id_group', 'group.id').from('service');
+	return knex.select().from('service').orderBy('id_group');
 }
 
 function getServiceGroup() {
@@ -152,7 +147,6 @@ module.exports = {
   addUser,
   addProfile,
   addClient,
-  getServices_Group,
   getMasters,
   addMaster,
   getAllMasters,

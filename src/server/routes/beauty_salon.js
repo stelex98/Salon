@@ -29,9 +29,20 @@ router.get('/groups', (req, res) => {
 });
 
 router.get('/services', (req, res) => {
-	queries.getServices_Group()
+	queries.getServices()
 	.then(data => {
-		res.send(data);
+		let service_by_group = [];
+		let arr = [];
+		for(let i=1; i<=7; i++){
+			arr = [];
+			data.forEach((service) => {
+				if(service.id_group === i){
+					arr.push(service);
+				}
+			})
+			service_by_group.push(arr);
+		}
+		res.send(service_by_group);
 	})
 	.catch(error => console.log(`Error: ${error}`));
 });
