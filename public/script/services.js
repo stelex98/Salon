@@ -3,8 +3,8 @@ let titleCard = document.getElementsByClassName('.card-image');
 let checkServices = [];
 let checkedServices = [];
 
-
-
+//для селектов
+//{id: , service: , id_group: , group: }
 function getServices() {
     $.ajax({
         url: "/api/beauty_salon/services",
@@ -17,15 +17,17 @@ function getServices() {
     });
 }
 
-
-function service(element) {
+//для конкретной услуги
+//
+function service() {
+    //let num_service = 0;
     $.ajax({
-        url: element.href,
+        url: `/api/beauty_salon/services/${num_service}`,
         type: "GET",
         contentType: "application/json",
         dataType: 'json',
         success: function(service) {
-            console.log(service[0]);
+            console.log(service);
         }
     });
     return false;
