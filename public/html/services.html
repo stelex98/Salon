@@ -14,11 +14,6 @@
 </head>
 
 <body>
-    <!--     <h2>Services</h2>
-    <a href="/">Главная</a> -->
-    <!-- <div id='service_block'>
-
-  </div> -->
     <div class="main-container-reviews">
         <div class="main-header-item-reviews">
             <div class="inner-header-item">
@@ -33,122 +28,132 @@
                 <div class="logo">
                     <img src="../picture/main/logi.png" alt="Logotype">
                 </div>
-                    <div class="auth-registr">
-                        <a id='auth' onclick='return openAuthorization(this);'>Авторизация</a>
-                        <a id='reg' href="/registration">Регистрация</a>
-                    </div>
+                <div class="auth-registr">
+                    <a id='auth' onclick='return openAuthorization(this);'>Авторизация</a>
+                    <a id='reg' href="/registration">Регистрация</a>
                 </div>
-                <div class="main-menu-item">
-                    <a href="/"> <div class="main-title">Главная</div></a>
-                    <a href="/services"><div class="services-title">Услуги</div></a>
-                    <a href="/prices"><div class="price-title">Цены</div></a>
-                    <a href="/reviews"><div class="reviews-title">Отзывы</div></a>
-                    <a href="/contacts"><div class="contacts-title">Контакты</div></a>
-                    <a onclick='return recording(this);'><div class="record-item">Запись</div></a>
+            </div>
+            <div class="main-menu-item">
+                <a href="/">
+                    <div class="main-title">Главная</div>
+                </a>
+                <a href="/services">
+                    <div class="services-title">Услуги</div>
+                </a>
+                <a href="/prices">
+                    <div class="price-title">Цены</div>
+                </a>
+                <a href="/reviews">
+                    <div class="reviews-title">Отзывы</div>
+                </a>
+                <a href="/contacts">
+                    <div class="contacts-title">Контакты</div>
+                </a>
+                <a onclick='return recording(this);'>
+                    <div class="record-item">Запись</div>
+                </a>
+            </div>
+            <div class="list-services">
+                <div class="spa-services input-field col s12">
+                    <select id="spa" onchange="sendNameAndDescribeServices('spa', 'Спа-процедуры', this.value)">
+                        <option value="" disabled selected>Спа-процедуры</option>
+                        <option value="2">Спа для тела</option>
+                        <option value="1">Спа для лица</option>
+                    </select>
+                    <label>Спа-процедуры</label>
                 </div>
-                <div class="list-services">
-                    <div class="hairdressing-services input-field col s12">
-                        <select id="hairdressing" onchange="sendNameAndDescribeServices('hairdressing', 'Парикмахерские услуги')">
-                            <option value="" disabled selected>Парикмахерские услуги</option>
-                            <option value="1">Стрижка головы</option>
-                            <option value="2">Стрижка ног</option>
-                            <option value="3">Стрижка рук</option>
-                        </select>
-                        <label>Парикмахерские услуги</label>
-                    </div>
-                    <div class="spa-services input-field col s12">
-                        <select id="spa" onchange="sendNameAndDescribeServices('spa', 'Спа-процедуры')">
-                            <option value="" disabled selected>Спа-процедуры</option>
-                            <option value="1">Спа ног</option>
-                            <option value="2">Спа рук</option>
-                            <option value="3">Спа попы</option>
-                        </select>
-                        <label>Спа-процедуры</label>
-                    </div>
-                    <div class="massage-services input-field col s12">
-                        <select id="massage" onchange="sendNameAndDescribeServices('massage', 'Массаж')">
-                            <option value="" disabled selected>Массаж</option>
-                            <option value="1">Option 14</option>
-                            <option value="2">Option 24</option>
-                            <option value="3">Option 34</option>
-                        </select>
-                        <label>Массаж</label>
-                    </div>
-                    <div class="cosmetology-services input-field col s12">
-                        <select id="cosmetology" onchange="sendNameAndDescribeServices('cosmetology', 'Косметология')">
-                            <option value="" disabled selected>Косметология</option>
-                            <option value="1">Option 15</option>
-                            <option value="2">Option 25</option>
-                            <option value="3">Option 35</option>
-                        </select>
-                        <label>Косметология</label>
-                    </div>
-                    <div class="makeup-services input-field col s12">
-                        <select id="makeup" onchange="sendNameAndDescribeServices('makeup', 'Макияж')">
-                            <option value="" disabled selected>Макияж</option>
-                            <option value="1">Option 16</option>
-                            <option value="2">Option 26</option>
-                            <option value="3">Option 36</option>
-                        </select>
-                        <label>Макияж</label>
-                    </div>
-                    <div class="eyebrows-eyelashes-services input-field col s12">
-                        <select id="eyebrows-eyelashes" onchange="sendNameAndDescribeServices('eyebrows-eyelashes', 'Брови и ресницы')">
-                            <option value="" disabled selected>Брови и ресницы</option>
-                            <option value="1">Option 17</option>
-                            <option value="2">Option 27</option>
-                            <option value="3">Option 37</option>
-                        </select>
-                        <label>Брови и ресницы</label>
-                    </div>
-                    <div class="nail-design-services input-field col s12">
-                        <select id="nail-design" onchange="sendNameAndDescribeServices('nail-design', 'Нейл-дизайн')">
-                            <option value="" disabled selected>Нейл-дизайн</option>
-                            <option value="1">Option 18</option>
-                            <option value="2">Option 28</option>
-                            <option value="3">Option 38</option>
-                        </select>
-                        <label>Нейл-дизайн</label>
-                    </div>
+                <div class="massage-services input-field col s12">
+                    <select id="massage" onchange="sendNameAndDescribeServices('massage', 'Массаж', this.value)">
+                        <option value="" disabled selected>Массаж</option>
+                        <option value="3">Массаж ног</option>
+                        <option value="4">Массаж общий</option>
+                        <option value="5">Массаж для рук</option>
+                    </select>
+                    <label>Массаж</label>
                 </div>
-                <div class="infromation-block">
-                    <div class="row">
-                        <div class="col s12 m7">
-                            <div class="card">
-                                <div class="card-image">
-                                    <img src="../picture/main/hairdressers.jpg">
-                                    <span class="card-title" id="card-title">The Royal</span>
-                                </div>
-                                <div class="card-content">
-                                    <p>I am a very simple card. I am good at containing small bits of information.
-                                        I am convenient because I require little markup to use effectively.</p>
-                                    <p>Цена: 100$</p>
-                                </div>
-                                <div class="card-action">
-                                    <a class="waves-effect waves-light btn">Записаться</a>
-                                </div>
+                <div class="cosmetology-services input-field col s12">
+                    <select id="cosmetology" onchange="sendNameAndDescribeServices('cosmetology', 'Косметология', this.value)">
+                        <option value="" disabled selected>Косметология</option>
+                        <option value="6">Чистка лица</option>
+                        <option value="7">Глубокая чистка лица</option>
+                    </select>
+                    <label>Косметология</label>
+                </div>
+                <div class="makeup-services input-field col s12">
+                    <select id="makeup" onchange="sendNameAndDescribeServices('makeup', 'Макияж', this.value)">
+                        <option value="" disabled selected>Макияж</option>
+                        <option value="1">Option 16</option>
+                        <option value="2">Option 26</option>
+                        <option value="3">Option 36</option>
+                    </select>
+                    <label>Макияж</label>
+                </div>
+                <div class="eyebrows-eyelashes-services input-field col s12">
+                    <select id="eyebrows-eyelashes" onchange="sendNameAndDescribeServices('eyebrows-eyelashes', 'Брови и ресницы', this.value)">
+                        <option value="" disabled selected>Брови и ресницы</option>
+                        <option value="1">Option 17</option>
+                        <option value="2">Option 27</option>
+                        <option value="3">Option 37</option>
+                    </select>
+                    <label>Брови и ресницы</label>
+                </div>
+                <div class="nail-design-services input-field col s12">
+                    <select id="nail-design" onchange="sendNameAndDescribeServices('nail-design', 'Нейл-дизайн', this.value)">
+                        <option value="" disabled selected>Нейл-дизайн</option>
+                        <option value="1">Option 18</option>
+                        <option value="2">Option 28</option>
+                        <option value="3">Option 38</option>
+                    </select>
+                    <label>Нейл-дизайн</label>
+                </div>
+                <div class="hairdressing-services input-field col s12">
+                    <select id="hairdressing" onchange="sendNameAndDescribeServices('hairdressing', 'Парикмахерские услуги', this.value)">
+                        <option value="" disabled selected>Парикмахерские услуги</option>
+                        <option value="1">Стрижка головы</option>
+                        <option value="2">Стрижка ног</option>
+                        <option value="3">Стрижка рук</option>
+                    </select>
+                    <label>Парикмахерские услуги</label>
+                </div>
+            </div>
+            <div class="infromation-block">
+                <div class="row">
+                    <div class="col s12 m7">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="../picture/main/hairdressers.jpg">
+                                <span class="card-title" id="card-title">The Royal</span>
+                            </div>
+                            <div class="card-content">
+                                <p>I am a very simple card. I am good at containing small bits of information.
+                                    I am convenient because I require little markup to use effectively.</p>
+                                <p>Цена: 100$</p>
+                            </div>
+                            <div class="card-action">
+                                <a class="waves-effect waves-light btn">Записаться</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="footer-item">
-                    <div class="teg-item">
-                        <p>© Косметический салон</p>
-                        <p>"The Royal"</p>
-                    </div>
-                    <div class="numbers-links-item">
-                        <p>+375 (29) 179-98-11 +375 (25) 741-06-84</p>
-                        <ul>
-                            <li> <a href="#">vk</a></li>
-                            <li> <a href="#">inst</a></li>
-                        </ul>
-                    </div>
-                    <div class="name-company-item">
-                        <p>Разработка сайта</p>
-                        <p>Adamovich Artur</p>
-                    </div>
+            </div>
+            <div class="footer-item">
+                <div class="teg-item">
+                    <p>© Косметический салон</p>
+                    <p>"The Royal"</p>
+                </div>
+                <div class="numbers-links-item">
+                    <p>+375 (29) 179-98-11</p>
+                    <ul>
+                        <li> <a href="#">vk</a></li>
+                        <li> <a href="#">inst</a></li>
+                    </ul>
+                </div>
+                <div class="name-company-item">
+                    <p>Разработка сайта</p>
+                    <p>Adamovich Artur</p>
                 </div>
             </div>
+        </div>
 </body>
 
 </html>
