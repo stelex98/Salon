@@ -14,20 +14,21 @@ function getServices() {
         dataType: 'json',
         success: function (services) {
             console.log(services);
-            service();
+            
         }
     });
 }
 
 //для конкретной услуги
 //
-function service(id, num_service) {
-    $.ajax({
-        url: `/api/beauty_salon/service/${num_service}`,
+function sendNameAndDescribeServices(id, defaultValue, value) {
+     $.ajax({
+        url: `/api/beauty_salon/service/${value}`,
         type: "GET",
         contentType: "application/json",
         dataType: 'json',
         success: function (service) {
+            console.log(service);
             let price = service[0].price;
             let describeService = service[0].about_service;
             let mySelectServices = $("#" + id + " :selected").text();
@@ -53,9 +54,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var instances = M.FormSelect.init(elems);
 });
 
-function sendNameAndDescribeServices(id, defaultValue, value) {
-    service(id, value);
-}
 
 function reset() {
     var select = $("#" + checkServices[0]);
@@ -64,3 +62,20 @@ function reset() {
 }
 
 getServices();
+
+function openAuthorization(){
+    window.location = 'http://localhost:3010/#auth';
+    return false;
+}
+
+//logout
+function exit(){
+    $.ajax({
+        url: "/api/logout",
+        type: "GET",
+        contentType: "application/json",
+        dataType: 'json',
+    });
+    alert("Выход выполнен!");
+    window.location = `http://localhost:3010/`;
+}

@@ -16,7 +16,7 @@ $(document).ready(function() {
 
 function getServices() {
     $.ajax({
-        url: "/api/beauty_salon/services",
+        url: "/api/beauty_salon/services/recording",
         type: "GET",
         contentType: "application/json",
         dataType: 'json',

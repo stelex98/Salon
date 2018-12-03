@@ -47,6 +47,14 @@ router.get('/services', (req, res) => {
 	.catch(error => console.log(`Error: ${error}`));
 });
 
+router.get('/services/recording', (req, res) => {
+	queries.getServices()
+	.then(data => {
+		res.send(data);
+	})
+	.catch(error => console.log(`Error: ${error}`));
+});
+
 router.get('/service_group', (req, res) => {
 	queries.getServiceGroup()
 	.then(data => {
@@ -74,6 +82,7 @@ router.get('/records_client', (req, res) => {
 	})
 	.catch(error => console.log(`Error: ${error}`));
 });
+
 
 
 
@@ -212,6 +221,17 @@ router.delete('/service/:id', (req, res) => {
 	queries.deleteService(req.params.id)
 	.then(data => {
 		res.send(data);
+	})
+	.catch(error => console.log(`Error: ${error}`))
+});
+
+router.delete('/record/:id', (req, res) => {
+	queries.deleteRecord(req.params.id)
+	.then(data => {
+		queries.deleteRecordOnSchedule(data[0])
+		.then(data => {
+			res.send(data);
+		})
 	})
 	.catch(error => console.log(`Error: ${error}`))
 });

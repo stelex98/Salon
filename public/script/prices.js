@@ -40,7 +40,7 @@ function addInformationInnerTable(services) {
     return `
     <tr>
         <td>${services.service}</td>
-        <td>$${services.price}</td>
+        <td>${services.price}</td>
     </tr>
     `;
 }
@@ -152,8 +152,8 @@ function linkAccount(login) {
 function linkSetting() {
     document.getElementById('auth').style.display = 'none';
     document.getElementById('reg').style.display = 'none';
-    
     let editService = `<a class='admin-block' id='setting' href='/setting'>Редактирование информации</a>`;
+    let myRecord = `<a class='admin-block' id='setting' href='/my_records'>Мои записи</a>`;
     let logout = `<a class='admin-block' onclick='return exit(this);'>Выход</a>
     <style>
         .admin-block{
@@ -164,8 +164,20 @@ function linkSetting() {
         }
     </style>`;
     $(".auth-registr").append(editService);
+    $(".auth-registr").append(myRecord);
     $(".auth-registr").append(logout);
-
 }
 
 // getGroups();
+
+//logout
+function exit(){
+    $.ajax({
+        url: "/api/logout",
+        type: "GET",
+        contentType: "application/json",
+        dataType: 'json',
+    });
+    alert("Выход выполнен!");
+    window.location = `http://localhost:3010/`;
+}
