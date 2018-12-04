@@ -13,17 +13,33 @@ function getServices() {
         contentType: "application/json",
         dataType: 'json',
         success: function (services) {
-            console.log(services);
+            let arr_id = ['#spa', '#massage', '#cosmetology', '#makeup', '#eyebrows-eyelashes', '#nail-design', '#hairdressing'];
+            let divs = '';
+            for(let i=0; i<services.length; i++){
+                $.each(services[i], function (index, service){
+                    divs += addOptionService(service);
+                })
+                $(arr_id[i]).append(divs);
+                $(arr_id[i]).formSelect();
+                divs = '';
+            }
             
         }
     });
 }
 
+function addOptionService(service){
+    return `
+        <option value="${service.id}">${service.service}</option>
+    `;
+}
+
 //для конкретной услуги
 //
-function sendNameAndDescribeServices(id, defaultValue, value) {
+function sendNameAndDescribeServices(id) {
+
      $.ajax({
-        url: `/api/beauty_salon/service/${value}`,
+        url: `/api/beauty_salon/service/${id}`,
         type: "GET",
         contentType: "application/json",
         dataType: 'json',
@@ -31,16 +47,17 @@ function sendNameAndDescribeServices(id, defaultValue, value) {
             console.log(service);
             let price = service[0].price;
             let describeService = service[0].about_service;
-            let mySelectServices = $("#" + id + " :selected").text();
+            let mySelectServices = service[0].service;
 
-            $('.card-content')[0].innerText = `${describeService}\nЦена: $${price}`;
-            checkServices.push(id);
+            $('.card-content')[0].innerText = `${describeService}\nЦена: ${price}`;
+            checkServices.push(service[0].service);
 
-            if (checkServices[0] == id) {
+            if (checkServices[0] == service[0].service) {
                 $("#card-title")[0].innerText = mySelectServices; // запись в карточку названия услуги
             } else {
                 reset();
-                checkServices[0] = id;
+                console.log('d');
+                checkServices[0] = service[0].service;
             }
             $("#card-title")[0].innerText = mySelectServices; // запись в карточку названия услуги
 

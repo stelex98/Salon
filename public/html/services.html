@@ -55,63 +55,51 @@
             </div>
             <div class="list-services">
                 <div class="spa-services input-field col s12">
-                    <select id="spa" onchange="sendNameAndDescribeServices('spa', 'Спа-процедуры', this.value)">
-                        <option value="" disabled selected>Спа-процедуры</option>
-                        <option value="2">Спа для тела</option>
-                        <option value="1">Спа для лица</option>
+                    <select id="spa"  onchange="sendNameAndDescribeServices(this.value);">
+                        <option  value="" disabled selected>Спа-процедуры</option>
+
                     </select>
                     <label>Спа-процедуры</label>
                 </div>
                 <div class="massage-services input-field col s12">
-                    <select id="massage" onchange="sendNameAndDescribeServices('massage', 'Массаж', this.value)">
+                    <select id="massage" onchange="sendNameAndDescribeServices( this.value)">
                         <option value="" disabled selected>Массаж</option>
-                        <option value="3">Массаж ног</option>
-                        <option value="4">Массаж общий</option>
-                        <option value="5">Массаж для рук</option>
+                        
                     </select>
                     <label>Массаж</label>
                 </div>
                 <div class="cosmetology-services input-field col s12">
-                    <select id="cosmetology" onchange="sendNameAndDescribeServices('cosmetology', 'Косметология', this.value)">
+                    <select id="cosmetology" onchange="sendNameAndDescribeServices(this.value)">
                         <option value="" disabled selected>Косметология</option>
-                        <option value="6">Чистка лица</option>
-                        <option value="7">Глубокая чистка лица</option>
+                       
                     </select>
                     <label>Косметология</label>
                 </div>
                 <div class="makeup-services input-field col s12">
-                    <select id="makeup" onchange="sendNameAndDescribeServices('makeup', 'Макияж', this.value)">
+                    <select id="makeup" onchange="sendNameAndDescribeServices(this.value)">
                         <option value="" disabled selected>Макияж</option>
-                        <option value="1">Option 16</option>
-                        <option value="2">Option 26</option>
-                        <option value="3">Option 36</option>
+
                     </select>
                     <label>Макияж</label>
                 </div>
                 <div class="eyebrows-eyelashes-services input-field col s12">
-                    <select id="eyebrows-eyelashes" onchange="sendNameAndDescribeServices('eyebrows-eyelashes', 'Брови и ресницы', this.value)">
+                    <select id="eyebrows-eyelashes" onchange="sendNameAndDescribeServices(this.value)">
                         <option value="" disabled selected>Брови и ресницы</option>
-                        <option value="1">Option 17</option>
-                        <option value="2">Option 27</option>
-                        <option value="3">Option 37</option>
+
                     </select>
                     <label>Брови и ресницы</label>
                 </div>
                 <div class="nail-design-services input-field col s12">
-                    <select id="nail-design" onchange="sendNameAndDescribeServices('nail-design', 'Нейл-дизайн', this.value)">
+                    <select id="nail-design" onchange="sendNameAndDescribeServices(this.value)">
                         <option value="" disabled selected>Нейл-дизайн</option>
-                        <option value="1">Option 18</option>
-                        <option value="2">Option 28</option>
-                        <option value="3">Option 38</option>
+
                     </select>
                     <label>Нейл-дизайн</label>
                 </div>
                 <div class="hairdressing-services input-field col s12">
-                    <select id="hairdressing" onchange="sendNameAndDescribeServices('hairdressing', 'Парикмахерские услуги', this.value)">
+                    <select id="hairdressing" onchange="sendNameAndDescribeServices(this.value)">
                         <option value="" disabled selected>Парикмахерские услуги</option>
-                        <option value="1">Стрижка головы</option>
-                        <option value="2">Стрижка ног</option>
-                        <option value="3">Стрижка рук</option>
+
                     </select>
                     <label>Парикмахерские услуги</label>
                 </div>
@@ -128,9 +116,6 @@
                                 <p>I am a very simple card. I am good at containing small bits of information.
                                     I am convenient because I require little markup to use effectively.</p>
                                 <p>Цена: 100$</p>
-                            </div>
-                            <div class="card-action">
-                                <a class="waves-effect waves-light btn">Записаться</a>
                             </div>
                         </div>
                     </div>
