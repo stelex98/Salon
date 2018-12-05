@@ -216,17 +216,13 @@ function getMyRecords() {
           recordsNew = { 'number': i + 1, 'service': records[i].service, 'fullName': fullNameArray[i], 'date': records[i].date, 'time': records[i].time };
           console.log('Records: ', recordsNew);
           let mineRecordsByAdmin = addInformationInnerTable(recordsNew);
-          $("#myTable").append(mineRecordsByAdmin);
+          $("#myTableTbody").append(mineRecordsByAdmin);
         }
       }, 100);
       setTimeout(() => {
-        // $("#myTable").tablesorter();
         inicializate();
-        $("#myTable").trigger('contentChanged');
-        console.log('1');
+        $("#myTable").tablesorter();
       }, 200);
-      //getFullName(id_profile);
-      $("#myTable").trigger('contentChanged');
     }
   });
 }
