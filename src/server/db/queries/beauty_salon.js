@@ -65,6 +65,30 @@ function getRecordsByClient(id_client){
              .orderBy('schedule.date');
 }
 
+function getIdMaster(id_master_user){
+  return knex.select('id')
+               .from('master')
+               .where({'id_user': parseInt(id_master_user)});
+}
+
+function getRecordsByMaster(id_master){
+  return knex.select('record.id', 'service.service', 'client.id_profile', 'schedule.date', 'schedule.time')
+             .from('record')
+             .join('service', 'record.id_service', 'service.id')
+             .join('client', 'record.id_client', 'client.id')
+             .join('schedule', 'record.id_schedule', 'schedule.id')
+             .where({'schedule.id_master': parseInt(id_master)})
+             .andWhere( 'schedule.date', '>',  knex.fn.now())
+             .orderBy('schedule.date');
+}
+
+
+function getFullName(id){
+  return knex.select('id', 'surname', 'name')
+               .from('public.profile')
+               .where({'id': parseInt(id)});
+}
+
 
 //-------------------SELECT--------------------
 
@@ -211,5 +235,8 @@ module.exports = {
   getRecordsByClient,
   getServicePrice,
   deleteRecord,
-  deleteRecordOnSchedule
+  deleteRecordOnSchedule,
+  getIdMaster,
+  getRecordsByMaster,
+  getFullName
 };

@@ -84,10 +84,28 @@ router.get('/records_client', (req, res) => {
 });
 
 
-
-
+router.get('/services/master/my-records', (req, res) => {
+	queries.getIdMaster(req.session.key)
+	.then(data => {
+		queries.getRecordsByMaster(data[0].id)
+		.then(data => {
+			res.send(data);
+		})
+	})
+	.catch(error => console.log(`Error: ${error}`));
+});
 
 //---------------------GET(id)--------------------------
+
+
+router.get('/services/master/my-records/:id', (req, res) => {
+	
+	queries.getFullName(req.params.id)
+	.then(data => {
+		res.send(data[0]);
+	})
+	.catch(error => console.log(`Error: ${error}`));
+});
 
 router.get('/service/:id', (req, res) => {
 	queries.getOneService(req.params.id)
