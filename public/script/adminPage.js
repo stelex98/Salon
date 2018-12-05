@@ -22,7 +22,7 @@ function checkButtonToAdd(ev) {
     let newRowInformation = addInformationInnerTable(newServices, newPrice, newDescribe);
 
     $('#myTable3').append(newRowInformation);
-    console.log(newServices, newPrice, newDescribe );
+    console.log(newServices, newPrice, newDescribe);
   }
 }
 
@@ -49,7 +49,7 @@ function addInformationInnerTable(newServices, newPrice, newDescribe) {
   `;
 }
 
-$(document).ready(function () {
+function inicializate() {
   $("#myTable").tablesorter();
   $("#myTable2").tablesorter();
   $("#myTable3").tablesorter();
@@ -57,6 +57,10 @@ $(document).ready(function () {
   M.updateTextFields();
   $('.datepicker').datepicker();
   $('.modal').modal();
+}
+
+$(document).ready(function () {
+  inicializate();
 });
 
 
@@ -113,7 +117,7 @@ var authRegistr = new Vue({
     showAddInf: function () {
       rowFirst.seen = false;
       rowFirst.seen2 = true;
-      
+
     },
     showMineAndAllReviews: function () {
       rowFirst.seen = true;
@@ -123,7 +127,6 @@ var authRegistr = new Vue({
 
   }
 });
-
 
 var mainMenu = new Vue({
   el: '.main-menu-item',
@@ -189,7 +192,7 @@ var rowFirst = new Vue({
 });
 let fullNameArray = [];
 
-function getMyRecords (){
+function getMyRecords() {
   fullNameArray.length = 0;
   $.ajax({
     url: "/api/beauty_salon/services/master/my-records",
@@ -197,21 +200,59 @@ function getMyRecords (){
     contentType: "application/json",
     dataType: 'json',
     success: function (records) {
-        console.log(records);
-       
-        $.each(records, (index , record) => {
-          getFullName(record.id_profile)
-        })
-        setTimeout(() => {console.log('massiv imen ', fullNameArray);}, 300);
-        
-        //getFullName(id_profile);
+      //let serviceLength = service_price.length;
+      let recordsNew = {};
+      let i = 0;
+
+      console.log(records);
+
+      $.each(records, (index, record) => {
+        getFullName(record.id_profile)
+      })
+      setTimeout(() => {
+        console.log('massiv imen ', fullNameArray);
+
+        for (i; i < fullNameArray.length; i++) {
+          recordsNew = { 'number': i + 1, 'service': records[i].service, 'fullName': fullNameArray[i], 'date': records[i].date, 'time': records[i].time };
+          console.log('Records: ', recordsNew);
+          let mineRecordsByAdmin = addInformationInnerTable(recordsNew);
+          $("#myTable").append(mineRecordsByAdmin);
+        }
+      }, 100);
+      setTimeout(() => {
+        // $("#myTable").tablesorter();
+        inicializate();
+        $("#myTable").trigger('contentChanged');
+        console.log('1');
+      }, 200);
+      //getFullName(id_profile);
+      $("#myTable").trigger('contentChanged');
     }
   });
 }
 
+function addInformationInnerTable(recordsNew) {
+  return `
+  <tr>
+      <td>${recordsNew.number}</td>
+      <td>${recordsNew.service}</td>
+      <td>${recordsNew.fullName}</td>
+      <td>${recordsNew.date}</td>
+      <td>${recordsNew.time}</td>
+  </tr>
+  `;
+}
 
+function clearTable() {
 
-function getFullName(id_profile){
+  let container = document.getElementById('priceTable');
+
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+}
+
+function getFullName(id_profile) {
 
   $.ajax({
     url: `/api/beauty_salon/services/master/my-records/${id_profile}`,
@@ -223,7 +264,7 @@ function getFullName(id_profile){
       fullNameArray.push(fullName.name + ' ' + fullName.surname);
     }
   });
-  
+
 }
 
 
