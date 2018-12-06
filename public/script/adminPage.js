@@ -187,6 +187,7 @@ var rowFirst = new Vue({
     seen2: false,
   }
 });
+
 let fullNameArray = [];
 
 function getMyRecords (){
