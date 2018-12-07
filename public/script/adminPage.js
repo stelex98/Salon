@@ -242,6 +242,7 @@ function getFullNameClient(id_profile) {
       fullNameArray.push(fullName.name + ' ' + fullName.surname);
     }
   });
+}
 
 //получение всех записей!
 //+нужно получение имени клиента - getFullNameClient
@@ -269,6 +270,7 @@ function getFullNameMaster(id_master) {
       console.log(fullName.name + ' ' + fullName.surname);
     }
   });
+}
 
 //получение услуг конкретного мастера
 function getServices() {
@@ -303,11 +305,6 @@ function clearTable() {
     container.removeChild(container.firstChild);
   }
 }
-
-
-
-}
-
 
 (function () {
   if (window.location.href === 'http://localhost:3010/setting') {
