@@ -65,10 +65,17 @@ function getRecordsByClient(id_client){
              .orderBy('schedule.date');
 }
 
-function getIdMaster(id_master_user){
+function getIdMaster(id_user){
   return knex.select('id')
                .from('master')
-               .where({'id_user': parseInt(id_master_user)});
+               .where({'id_user': parseInt(id_user)});
+}
+
+function getIdGroup(id_user){
+  return knex.select('position.id_group')
+               .from('position')
+               .join('master', 'position.id', 'master.id_position')
+               .where({'master.id_user': parseInt(id_user)});
 }
 
 function getRecordsByMaster(id_master){
@@ -82,13 +89,31 @@ function getRecordsByMaster(id_master){
              .orderBy('schedule.date');
 }
 
-
 function getFullName(id){
   return knex.select('id', 'surname', 'name')
                .from('public.profile')
                .where({'id': parseInt(id)});
 }
 
+function getFullNameMaster(id){
+  return knex.select('id', 'surname', 'name')
+               .from('master')
+               .where({'id': parseInt(id)});
+}
+
+function getRecords(){
+  return knex.select('record.id', 'service.service', 'client.id_profile', 'schedule.id_master', 'schedule.date', 'schedule.time')
+             .from('record')
+             .join('service', 'record.id_service', 'service.id')
+             .join('client', 'record.id_client', 'client.id')
+             .join('schedule', 'record.id_schedule', 'schedule.id')
+             .where( 'schedule.date', '>',  knex.fn.now())
+             .orderBy('schedule.date');
+}
+
+function getServicesForMaster(id_group){
+  return knex.select().from('service').where({ 'id_group': parseInt(id_group) });
+}
 
 //-------------------SELECT--------------------
 
@@ -96,20 +121,20 @@ function getFullName(id){
 function getOneService(id) {
   return knex.select()
              .from('service')
-             .where({ id: parseInt(id) });
+             .where({ 'id': parseInt(id) });
 }
 
 function getServiceByGroup(id) {
   return knex.select('service', 'price')
              .from('service')
-             .where({ id_group: parseInt(id) });
+             .where({ 'id_group': parseInt(id) });
 }
 
 //+
 function getIdClient(id) {
   return knex.select('id')
              .from('client')
-             .where({ id_user: parseInt(id) });
+             .where({ 'id_user': parseInt(id) });
 }
 
 //+
@@ -238,5 +263,9 @@ module.exports = {
   deleteRecordOnSchedule,
   getIdMaster,
   getRecordsByMaster,
-  getFullName
+  getFullName,
+  getRecords,
+  getFullNameMaster,
+  getServicesForMaster,
+  getIdGroup
 };

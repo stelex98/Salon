@@ -28,6 +28,17 @@ router.get('/groups', (req, res) => {
 	.catch(error => console.log(`Error: ${error}`));
 });
 
+router.get('/master/services', (req, res) => {
+	queries.getIdGroup(req.session.key)
+	.then(data => {
+		queries.getServicesForMaster(data[0].id)
+		.then((data) => {
+			res.send(data);
+		})
+	})
+	.catch(error => console.log(`Error: ${error}`));
+});
+
 router.get('/services', (req, res) => {
 	queries.getServices()
 	.then(data => {
@@ -83,7 +94,7 @@ router.get('/records_client', (req, res) => {
 	.catch(error => console.log(`Error: ${error}`));
 });
 
-
+//записи конкретного мастера
 router.get('/services/master/my-records', (req, res) => {
 	queries.getIdMaster(req.session.key)
 	.then(data => {
@@ -95,17 +106,35 @@ router.get('/services/master/my-records', (req, res) => {
 	.catch(error => console.log(`Error: ${error}`));
 });
 
+//все записи (для мастера)
+router.get('/services/master/records', (req, res) => {
+	queries.getRecords()
+	.then(data => {
+		res.send(data);
+	})
+	.catch(error => console.log(`Error: ${error}`));
+});
+
 //---------------------GET(id)--------------------------
 
-
+//ФИО клиента для записей мастера/мастеров
 router.get('/services/master/my-records/:id', (req, res) => {
-	
 	queries.getFullName(req.params.id)
 	.then(data => {
 		res.send(data[0]);
 	})
 	.catch(error => console.log(`Error: ${error}`));
 });
+
+//ФИО мастера для записей мастеров
+router.get('/services/master/records/:id', (req, res) => {
+	queries.getFullNameMaster(req.params.id)
+	.then(data => {
+		res.send(data[0]);
+	})
+	.catch(error => console.log(`Error: ${error}`));
+});
+
 
 router.get('/service/:id', (req, res) => {
 	queries.getOneService(req.params.id)

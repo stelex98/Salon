@@ -117,7 +117,7 @@ var authRegistr = new Vue({
     showAddInf: function () {
       rowFirst.seen = false;
       rowFirst.seen2 = true;
-
+      getServices();
     },
     showMineAndAllReviews: function () {
       rowFirst.seen = true;
@@ -193,6 +193,8 @@ var rowFirst = new Vue({
 
 let fullNameArray = [];
 
+
+//получение записей конкретного мастера
 function getMyRecords() {
   fullNameArray.length = 0;
   $.ajax({
@@ -208,7 +210,7 @@ function getMyRecords() {
       console.log(records);
 
       $.each(records, (index, record) => {
-        getFullName(record.id_profile)
+        getFullNameClient(record.id_profile)
       })
       setTimeout(() => {
         console.log('massiv imen ', fullNameArray);
@@ -224,6 +226,59 @@ function getMyRecords() {
         inicializate();
         $("#myTable").tablesorter();
       }, 200);
+    }
+  });
+}
+
+//получение имени клиента для записей 
+function getFullNameClient(id_profile) {
+  $.ajax({
+    url: `/api/beauty_salon/services/master/my-records/${id_profile}`,
+    type: "GET",
+    contentType: "application/json",
+    dataType: 'json',
+    success: function (fullName) {
+      //console.log(fullName.name + ' ' + fullName.surname);
+      fullNameArray.push(fullName.name + ' ' + fullName.surname);
+    }
+  });
+
+//получение всех записей!
+//+нужно получение имени клиента - getFullNameClient
+//+нужно получение имени мастера - getFullNameMaster
+function getRecords() {
+  $.ajax({
+    url: "/api/beauty_salon/services/master/records",
+    type: "GET",
+    contentType: "application/json",
+    dataType: 'json',
+    success: function (records) {
+      console.log(records);
+    }
+  });
+}
+
+//получение имени мастера для записей 
+function getFullNameMaster(id_master) {
+  $.ajax({
+    url: `/api/beauty_salon/services/master/records/${id_master}`,
+    type: "GET",
+    contentType: "application/json",
+    dataType: 'json',
+    success: function (fullName) {
+      console.log(fullName.name + ' ' + fullName.surname);
+    }
+  });
+
+//получение услуг конкретного мастера
+function getServices() {
+  $.ajax({
+    url: "/api/beauty_salon/master/services",
+    type: "GET",
+    contentType: "application/json",
+    dataType: 'json',
+    success: function (services) {
+      console.log(services);
     }
   });
 }
@@ -249,18 +304,7 @@ function clearTable() {
   }
 }
 
-function getFullName(id_profile) {
 
-  $.ajax({
-    url: `/api/beauty_salon/services/master/my-records/${id_profile}`,
-    type: "GET",
-    contentType: "application/json",
-    dataType: 'json',
-    success: function (fullName) {
-      //console.log(fullName.name + ' ' + fullName.surname);
-      fullNameArray.push(fullName.name + ' ' + fullName.surname);
-    }
-  });
 
 }
 
