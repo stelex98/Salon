@@ -6,8 +6,8 @@ const fs = require('fs');
 const CryptoJS = require("crypto-js");
 
 const global_salt='8hbg5gbdr#$%^ghvfd5';
-const path_dir = `/media/olga/Work/BSUIR/Salon/public/picture/photo_profile/`;
-//const path_dir = `/Users/artur/Desktop/Express/public/picture/photo_profile/`;
+//const path_dir = `/media/olga/Work/BSUIR/Salon/public/picture/photo_profile/`;
+const path_dir = `/Users/artur/Desktop/Salon/Express/public/picture/photo_profile/`;
 
 
 //авторизация

@@ -62,7 +62,7 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary();
       table.integer('id_master');
       table.date('date');
-      table.time('time');
+      table.text('time');
       table.foreign('id_master').references('master.id');
     }),
 
@@ -88,15 +88,15 @@ exports.up = function(knex, Promise) {
 
 exports.down = function(knex, Promise) {
   return Promise.all([
-    knex.schema.dropTable('user'),
-    knex.schema.dropTable('profile'),
-    knex.schema.dropTable('client'),
-    knex.schema.dropTable('group'),
-    knex.schema.dropTable('position'),
-    knex.schema.dropTable('service'),
-    knex.schema.dropTable('master'),
-    knex.schema.dropTable('schedule'),
+    knex.schema.dropTable('record'),
     knex.schema.dropTable('review'),
-    knex.schema.dropTable('record')
+    knex.schema.dropTable('schedule'),
+    knex.schema.dropTable('master'),
+    knex.schema.dropTable('service'),
+    knex.schema.dropTable('position'),
+    knex.schema.dropTable('group'),
+    knex.schema.dropTable('client'),
+    knex.schema.dropTable('profile'),
+    knex.schema.dropTable('user')
   ]);
 };

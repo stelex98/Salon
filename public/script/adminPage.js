@@ -123,6 +123,7 @@ var authRegistr = new Vue({
       rowFirst.seen = true;
       rowFirst.seen2 = false;
       getMyRecords();
+      getRecords();
     }
 
   }
@@ -192,8 +193,6 @@ var rowFirst = new Vue({
 });
 
 let fullNameArray = [];
-
-
 //получение записей конкретного мастера
 function getMyRecords() {
   fullNameArray.length = 0;
@@ -203,21 +202,16 @@ function getMyRecords() {
     contentType: "application/json",
     dataType: 'json',
     success: function (records) {
-      //let serviceLength = service_price.length;
       let recordsNew = {};
       let i = 0;
-
-      console.log(records);
 
       $.each(records, (index, record) => {
         getFullNameClient(record.id_profile)
       })
       setTimeout(() => {
-        console.log('massiv imen ', fullNameArray);
-
+        clearTable();
         for (i; i < fullNameArray.length; i++) {
           recordsNew = { 'number': i + 1, 'service': records[i].service, 'fullName': fullNameArray[i], 'date': records[i].date, 'time': records[i].time };
-          console.log('Records: ', recordsNew);
           let mineRecordsByAdmin = addInformationInnerTable(recordsNew);
           $("#myTableTbody").append(mineRecordsByAdmin);
         }
@@ -238,15 +232,40 @@ function getFullNameClient(id_profile) {
     contentType: "application/json",
     dataType: 'json',
     success: function (fullName) {
-      //console.log(fullName.name + ' ' + fullName.surname);
       fullNameArray.push(fullName.name + ' ' + fullName.surname);
     }
   });
 }
 
+function getFullNameClientForAllReviews(id_profile) {
+  $.ajax({
+    url: `/api/beauty_salon/services/master/my-records/${id_profile}`,
+    type: "GET",
+    contentType: "application/json",
+    dataType: 'json',
+    success: function (fullName) {
+      console.log('Запрос Полное имя:', fullName);
+      fullNameArrayForAllReviews.push(fullName.name + ' ' + fullName.surname);
+    }
+  });
+}
+
+let fullNameArrayForAllReviews = [];
+let fullNameArrayAdminForAllReviews = [];
 //получение всех записей!
 //+нужно получение имени клиента - getFullNameClient
 //+нужно получение имени мастера - getFullNameMaster
+
+function addedIntoArray(records, callback) {
+
+  $.each(records, (index, record) => {
+    console.log('ID profile: ', record.id_profile);
+    getFullNameClientForAllReviews(record.id_profile);
+  });
+  console.log(fullNameArrayForAllReviews);
+  callback();
+}
+
 function getRecords() {
   $.ajax({
     url: "/api/beauty_salon/services/master/records",
@@ -254,7 +273,48 @@ function getRecords() {
     contentType: "application/json",
     dataType: 'json',
     success: function (records) {
-      console.log(records);
+      clearTableAllReviews();
+
+      // $.each(records, (index, record) => {
+      //   console.log('ID profile: ', record.id_profile);
+      //   getFullNameClientForAllReviews(record.id_profile);
+      // });
+      // console.log(fullNameArrayForAllReviews);
+
+      addedIntoArray(records, function(){
+        // $.each(records, (index, record) => {
+        //   console.log('ID master: ', record.id_master);
+        //   getFullNameMaster(record.id_master);
+        // });
+        for(let i = 0; i < records.length; i++){
+          console.log('ID master: ', records[i].id_master);
+          getFullNameMaster(records[i].id_master);
+        }
+        console.log(fullNameArrayAdminForAllReviews);
+      })
+
+      // setTimeout(() => {
+      //   $.each(records, (index, record) => {
+      //     console.log('ID master: ', record.id_master);
+      //     getFullNameMaster(record.id_master);
+      //   });
+      //   console.log(fullNameArrayAdminForAllReviews);
+      // }, 500);
+      // console.log('Массив итоговый Имен: ',fullNameArrayForAllReviews);
+      // console.log('Массив итоговый Админов: ',fullNameArrayAdminForAllReviews);
+      // console.log('Массив записей всех: ',records);
+
+      setTimeout(() => {
+        for (let i = 0; i < records.length; i++) {
+          recordsNew = { 'number': i + 1, 'service': records[i].service, 'master': fullNameArrayAdminForAllReviews[i], 'fullName': fullNameArrayForAllReviews[i], 'date': records[i].date, 'time': records[i].time };
+          let mineRecordsByAdmin = addInformationInnerTableForAllReviews(recordsNew);
+          $("#myTable2Tbody").append(mineRecordsByAdmin);
+        }
+      }, 1000);
+      setTimeout(() => {
+        inicializate();
+        $("#myTable2").tablesorter();
+      }, 1500);
     }
   });
 }
@@ -267,7 +327,9 @@ function getFullNameMaster(id_master) {
     contentType: "application/json",
     dataType: 'json',
     success: function (fullName) {
-      console.log(fullName.name + ' ' + fullName.surname);
+      console.log('Запрос Полное имя Мастера: ', fullName);
+      fullNameArrayAdminForAllReviews.push(fullName.name + ' ' + fullName.surname);
+
     }
   });
 }
@@ -284,6 +346,18 @@ function getServices() {
     }
   });
 }
+function addInformationInnerTableForAllReviews(recordsNew) {
+  return `
+  <tr>
+      <td>${recordsNew.number}</td>
+      <td>${recordsNew.service}</td>
+      <td>${recordsNew.master}</td>
+      <td>${recordsNew.fullName}</td>
+      <td>${recordsNew.date}</td>
+      <td>${recordsNew.time}</td>
+  </tr>
+  `;
+}
 
 function addInformationInnerTable(recordsNew) {
   return `
@@ -299,7 +373,16 @@ function addInformationInnerTable(recordsNew) {
 
 function clearTable() {
 
-  let container = document.getElementById('priceTable');
+  let container = document.getElementById('myTableTbody');
+
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+}
+
+function clearTableAllReviews() {
+
+  let container = document.getElementById('myTable2Tbody');
 
   while (container.firstChild) {
     container.removeChild(container.firstChild);

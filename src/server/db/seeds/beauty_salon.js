@@ -67,24 +67,6 @@ exports.seed = function(knex, Promise) {
             }
           ])
         })
-        .then(() => {
-          return knex('service').insert([
-            {
-              service: 'СПА для лица',
-              id_group: 1,
-              price: 35,
-              about_service: '',
-              picture: ''
-            },
-            {
-              service: 'СПА для тела',
-              id_group: 1,
-              price: 85,
-              about_service: '',
-              picture: ''
-            }
-          ])
-        })
         .then(() => console.log('Seeding complete!'))
         .catch(error => console.log(`Error seeding data: ${error}`))
       )

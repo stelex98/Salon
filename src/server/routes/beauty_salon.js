@@ -119,8 +119,10 @@ router.get('/services/master/records', (req, res) => {
 
 //ФИО клиента для записей мастера/мастеров
 router.get('/services/master/my-records/:id', (req, res) => {
+	console.log(req.params.id)
 	queries.getFullName(req.params.id)
 	.then(data => {
+		console.log(data);
 		res.send(data[0]);
 	})
 	.catch(error => console.log(`Error: ${error}`));
@@ -128,6 +130,7 @@ router.get('/services/master/my-records/:id', (req, res) => {
 
 //ФИО мастера для записей мастеров
 router.get('/services/master/records/:id', (req, res) => {
+	//console.log('req: ',req.params.id);
 	queries.getFullNameMaster(req.params.id)
 	.then(data => {
 		res.send(data[0]);
@@ -211,6 +214,7 @@ router.post('/date_time', (req, res) => {
 });
 
 router.post('/recording', (req, res) => {
+	console.log(req.body);
 	let new_schedule = {
 		id_master: req.body.id_master,
 		date: req.body.date,
