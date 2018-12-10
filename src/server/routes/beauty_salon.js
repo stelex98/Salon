@@ -31,7 +31,7 @@ router.get('/groups', (req, res) => {
 router.get('/master/services', (req, res) => {
 	queries.getIdGroup(req.session.key)
 	.then(data => {
-		queries.getServicesForMaster(data[0].id)
+		queries.getServicesForMaster(data[0].id_group)
 		.then((data) => {
 			res.send(data);
 		})

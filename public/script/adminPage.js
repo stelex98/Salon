@@ -200,6 +200,7 @@ function getMyRecords() {
     contentType: "application/json",
     dataType: 'json',
     success: function (records) {
+
       clearTable();
       for (let i = 0; i < records.length; i++) {
         recordsNew = { 'number': i + 1, 'service': records[i].service, 'client': records[i].client, 'date': records[i].date, 'time': records[i].time };
