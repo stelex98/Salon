@@ -15,36 +15,39 @@ function getServices() {
         success: function (services) {
             let arr_id = ['#spa', '#massage', '#cosmetology', '#makeup', '#eyebrows-eyelashes', '#nail-design', '#hairdressing'];
             let divs = '';
-            for(let i=0; i<services.length; i++){
-                $.each(services[i], function (index, service){
+            for (let i = 0; i < services.length; i++) {
+                $.each(services[i], function (index, service) {
                     divs += addOptionService(service);
                 })
                 $(arr_id[i]).append(divs);
                 $(arr_id[i]).formSelect();
                 divs = '';
             }
-            
+
         }
     });
 }
 
-function addOptionService(service){
+function addOptionService(service) {
     return `
         <option value="${service.id}">${service.service}</option>
     `;
 }
 
 //для конкретной услуги
-//
-function sendNameAndDescribeServices(id) {
+let arrayIdServices = [];
 
-     $.ajax({
+function sendNameAndDescribeServices(id, event) {
+
+    $.ajax({
         url: `/api/beauty_salon/service/${id}`,
         type: "GET",
         contentType: "application/json",
         dataType: 'json',
         success: function (service) {
-            console.log(service);
+            reset();
+            arrayIdServices.push('#' + event.path[0].id);
+
             let price = service[0].price;
             let describeService = service[0].about_service;
             let mySelectServices = service[0].service;
@@ -55,8 +58,6 @@ function sendNameAndDescribeServices(id) {
             if (checkServices[0] == service[0].service) {
                 $("#card-title")[0].innerText = mySelectServices; // запись в карточку названия услуги
             } else {
-                reset();
-                console.log('d');
                 checkServices[0] = service[0].service;
             }
             $("#card-title")[0].innerText = mySelectServices; // запись в карточку названия услуги
@@ -73,20 +74,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 function reset() {
-    var select = $("#" + checkServices[0]);
-    select.prop('selectedIndex', 0); //Sets the first option as selected
-    select.formSelect();        //Update material select
+
+    for (let i = 0; i < arrayIdServices.length; i++) {
+        $(arrayIdServices[i]).prop('selectedIndex', 0);
+        $(arrayIdServices[i]).formSelect();
+
+    }
+
+    arrayIdServices.length = 0;
 }
 
 getServices();
 
-function openAuthorization(){
+function openAuthorization() {
     window.location = 'http://localhost:3010/#auth';
     return false;
 }
 
 //logout
-function exit(){
+function exit() {
     $.ajax({
         url: "/api/logout",
         type: "GET",
@@ -96,3 +102,12 @@ function exit(){
     alert("Выход выполнен!");
     window.location = `http://localhost:3010/`;
 }
+
+
+
+
+
+
+
+
+
