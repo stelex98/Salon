@@ -195,7 +195,7 @@
                                 <div class="file-field input-field">
                                     <div class="btn">
                                         <span>File</span>
-                                        <input type="file" multiple="">
+                                        <input type="file" accept="image/*" onchange="uploadImage(this.files[0])"multiple="">
                                     </div>
                                     <div class="file-path-wrapper">
                                         <input class="file-path validate" type="text" placeholder="Upload one or more files">
@@ -209,25 +209,18 @@
                                 <a href="#!" class="cancelButton modal-close waves-effect waves-green btn-flat" onclick="checkButtonCancel(event)">Отмена</a>
                             </div>
                         </div>
-                        <table id="myTable3" class="addInformationTable tablesorter highlight  myReviews">
+                        <table id="myTable3" class="addInformationTable tablesorter highlight centered  myReviews">
                             <thead>
                                 <tr>
                                     <th>{{reviews}}</th>
                                     <th>{{price}}</th>
                                     <th>{{desicribeRev}}</th>
+                                    <th>Изображение</th>
                                     <th>{{deleteRev}}</th>
                                     <th>{{editRev}}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>SPA рук</td>
-                                    <td>120</td>
-                                    <td>jsmith@gmail.com</td>
-                                    <td><i onclick="deleteInformation(event)" class="small material-icons">delete</i></td>
-                                    <td onclick="changeInformation(event)"><i class="small material-icons modal-trigger"
-                                            href="#modal1">edit</i></td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>

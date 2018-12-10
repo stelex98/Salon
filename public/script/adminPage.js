@@ -1,28 +1,76 @@
 
 let currentEventEdit;
 let checkActionAddOrEdit = 0;
+var idGroup = 0;
+var id = 0;
+let reader = new FileReader();
+
+let uploadImage = function (image) {
+
+  reader.onloadend = function () {
+
+  };
+  reader.readAsDataURL(image);
+};
 
 function checkButtonToAdd(ev) {
 
   if (checkActionAddOrEdit == 0) {
     console.log('Редактируем');
     let newServices = $('input#services.validate.inputServices')[0].value;
-    let newPrice = $('input#price.validate.inputPrice')[0].value;
+    let newPrice = $('input#price.validate.inputPrice')[0].value.slice(1);
+    newPrice = parseInt(newPrice);
+    console.log(newPrice);
     let newDescribe = $('textarea#describeText.materialize-textarea.inputDescribe')[0].value;
+    console.log(reader.result);
+    // let srcImage =
+    console.log(newServices, newPrice, newDescribe );
+    $.ajax({
+      url: `/api/beauty_salon/service/${id}`,
+      type: "PUT",
+      contentType: "application/json",
+      data: JSON.stringify({
+        service: newServices,
+        id_group: idGroup,
+        price: newPrice,
+        picture: reader.result,
+        about_service: newDescribe
+      }),
+      success: function (service) {
+        console.log(service);
+        location.reload(true);
 
-    currentEventEdit.path[2].cells[0].innerHTML = newServices;
-    currentEventEdit.path[2].cells[1].innerHTML = newPrice;
-    currentEventEdit.path[2].cells[2].innerHTML = newDescribe;
+        //$('#myTable3').append(newRowInformation);
+      }
+    });
+    // currentEventEdit.path[2].cells[0].innerHTML = newServices;
+    // currentEventEdit.path[2].cells[1].innerHTML = newPrice;
+    // currentEventEdit.path[2].cells[2].innerHTML = newDescribe;
   } else {
-    console.log('Добавляем');
     let newServices = $('input#services.validate.inputServices')[0].value;
     let newPrice = $('input#price.validate.inputPrice')[0].value;
     let newDescribe = $('textarea#describeText.materialize-textarea.inputDescribe')[0].value;
+    let newRowInformation = addInformationInnerTableInf(newServices, newPrice, newDescribe, idGroup);
+    console.log(reader.result);
+    $.ajax({
+      url: "/api/beauty_salon/service",
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify({
+        service: newServices,
+        id_group: idGroup,
+        price: newPrice,
+        picture: reader.result,
+        about_service: newDescribe
+      }),
+      success: function (service) {
+        console.log(service);
+        //$('#myTable3').append(newRowInformation);
+        location.reload(true);
 
-    let newRowInformation = addInformationInnerTable(newServices, newPrice, newDescribe);
+      }
+    });
 
-    $('#myTable3').append(newRowInformation);
-    console.log(newServices, newPrice, newDescribe);
   }
 }
 
@@ -36,12 +84,17 @@ function addNewServices(ev) {
   checkActionAddOrEdit = 1;
 }
 
-function addInformationInnerTable(newServices, newPrice, newDescribe) {
+function addInformationInnerTableInf(newServices, newPrice, newDescribe, srcImage, id_group, id) {
   return `
-  <tr>
+  <tr data-id=${id} data-id_group=${id_group}>
       <td>${newServices}</td>
       <td>$${newPrice}</td>
-      <td>${newDescribe}</td>
+      <td style ="width: 10% !important;
+      white-space: nowrap;
+      overflow: hidden;
+      position: absolute;
+      text-overflow: ellipsis;">${newDescribe}</td>
+      <td><img src="${srcImage}" alt="альтернативный текст" style="width: 30px; height: 30px; margin-left: 25%;"></td>
       <td><i onclick="deleteInformation(event)" class="centered small material-icons">delete</i></td>
       <td onclick="changeInformation(event)"><i class="centererd small material-icons modal-trigger"
                                             href="#modal1">edit</i></td>
@@ -50,9 +103,6 @@ function addInformationInnerTable(newServices, newPrice, newDescribe) {
 }
 
 function inicializate() {
-  $("#myTable").tablesorter();
-  $("#myTable2").tablesorter();
-  $("#myTable3").tablesorter();
   $('.tabs').tabs();
   M.updateTextFields();
   $('.datepicker').datepicker();
@@ -65,24 +115,24 @@ $(document).ready(function () {
 
 
 function changeInformation(ev) {
+  id = ev.path[2].dataset.id;
   checkActionAddOrEdit = 0;
   currentEventEdit = ev;
-  console.log("ev: ", ev);
   let services = ev.path[2].cells[0].innerHTML;
   let price = ev.path[2].cells[1].innerHTML;
   let describe = ev.path[2].cells[2].innerHTML;
-
-  console.log(services, price, describe);
-
-  transitionToWindow(services, price, describe);
+  let srcImage = ev.path[2].cells[3].childNodes[0].src;
+  console.log(srcImage.slice(22));
+  srcImage = srcImage.slice(21);
+  transitionToWindow(services, price, describe, srcImage);
 }
 
-function transitionToWindow(services, price, describe) {
+function transitionToWindow(services, price, describe, srcImage) {
 
   $('input#services.validate.inputServices')[0].value = services;
   $('input#price.validate.inputPrice')[0].value = price;
   $('textarea#describeText.materialize-textarea.inputDescribe')[0].value = describe;
-
+  $('input.file-path.validate')[0].value = srcImage;
 }
 
 var listLocation = new Vue({
@@ -207,11 +257,6 @@ function getMyRecords() {
         let mineRecordsByAdmin = addInformationInnerTable(recordsNew);
         $("#myTableTbody").append(mineRecordsByAdmin);
       }
-
-      setTimeout(() => {
-        inicializate();
-        $("#myTable").tablesorter();
-      }, 200);
     }
   });
 }
@@ -230,15 +275,9 @@ function getRecords() {
         let mineRecordsByAdmin = addInformationInnerTableForAllReviews(recordsNew);
         $("#myTable2Tbody").append(mineRecordsByAdmin);
       }
-
-      setTimeout(() => {
-        inicializate();
-        $("#myTable2").tablesorter();
-      }, 1500);
     }
   });
 }
-
 
 //получение услуг конкретного мастера
 function getServices() {
@@ -248,10 +287,17 @@ function getServices() {
     contentType: "application/json",
     dataType: 'json',
     success: function (services) {
+      idGroup = services[0].id_group;
+      id = services[0].id;
       console.log(services);
+      for (let i = 0; i < services.length; i++) {
+        let newRowInformation = addInformationInnerTableInf(services[i].service, services[i].price, services[i].about_service, services[i].picture, services[i].id_group, services[i].id);
+        $('#myTable3').append(newRowInformation);
+      }
     }
   });
 }
+
 function addInformationInnerTableForAllReviews(recordsNew) {
   return `
   <tr>
@@ -304,14 +350,7 @@ function clearTableAllReviews() {
   }
 })();
 
-let reader = new FileReader();
-let uploadImage = function(image) {
 
-    reader.onloadend = function() {
-
-    };
-    reader.readAsDataURL(image);
-};
 
 //для добавления услуги
 /*
