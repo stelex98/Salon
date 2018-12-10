@@ -237,34 +237,6 @@ function getFullNameClient(id_profile) {
   });
 }
 
-function getFullNameClientForAllReviews(id_profile) {
-  $.ajax({
-    url: `/api/beauty_salon/services/master/my-records/${id_profile}`,
-    type: "GET",
-    contentType: "application/json",
-    dataType: 'json',
-    success: function (fullName) {
-      console.log('Запрос Полное имя:', fullName);
-      fullNameArrayForAllReviews.push(fullName.name + ' ' + fullName.surname);
-    }
-  });
-}
-
-let fullNameArrayForAllReviews = [];
-let fullNameArrayAdminForAllReviews = [];
-//получение всех записей!
-//+нужно получение имени клиента - getFullNameClient
-//+нужно получение имени мастера - getFullNameMaster
-
-function addedIntoArray(records, callback) {
-
-  $.each(records, (index, record) => {
-    console.log('ID profile: ', record.id_profile);
-    getFullNameClientForAllReviews(record.id_profile);
-  });
-  console.log(fullNameArrayForAllReviews);
-  callback();
-}
 
 function getRecords() {
   $.ajax({
@@ -275,42 +247,12 @@ function getRecords() {
     success: function (records) {
       clearTableAllReviews();
 
-      // $.each(records, (index, record) => {
-      //   console.log('ID profile: ', record.id_profile);
-      //   getFullNameClientForAllReviews(record.id_profile);
-      // });
-      // console.log(fullNameArrayForAllReviews);
-
-      addedIntoArray(records, function(){
-        // $.each(records, (index, record) => {
-        //   console.log('ID master: ', record.id_master);
-        //   getFullNameMaster(record.id_master);
-        // });
-        for(let i = 0; i < records.length; i++){
-          console.log('ID master: ', records[i].id_master);
-          getFullNameMaster(records[i].id_master);
-        }
-        console.log(fullNameArrayAdminForAllReviews);
-      })
-
-      // setTimeout(() => {
-      //   $.each(records, (index, record) => {
-      //     console.log('ID master: ', record.id_master);
-      //     getFullNameMaster(record.id_master);
-      //   });
-      //   console.log(fullNameArrayAdminForAllReviews);
-      // }, 500);
-      // console.log('Массив итоговый Имен: ',fullNameArrayForAllReviews);
-      // console.log('Массив итоговый Админов: ',fullNameArrayAdminForAllReviews);
-      // console.log('Массив записей всех: ',records);
-
-      setTimeout(() => {
-        for (let i = 0; i < records.length; i++) {
-          recordsNew = { 'number': i + 1, 'service': records[i].service, 'master': fullNameArrayAdminForAllReviews[i], 'fullName': fullNameArrayForAllReviews[i], 'date': records[i].date, 'time': records[i].time };
-          let mineRecordsByAdmin = addInformationInnerTableForAllReviews(recordsNew);
-          $("#myTable2Tbody").append(mineRecordsByAdmin);
-        }
-      }, 1000);
+      for (let i = 0; i < records.length; i++) {
+        recordsNew = { 'number': i + 1, 'service': records[i].service, 'master': records[i].master, 'client': records[i].client, 'date': records[i].date, 'time': records[i].time };
+        let mineRecordsByAdmin = addInformationInnerTableForAllReviews(recordsNew);
+        $("#myTable2Tbody").append(mineRecordsByAdmin);
+      }
+      
       setTimeout(() => {
         inicializate();
         $("#myTable2").tablesorter();
@@ -319,20 +261,6 @@ function getRecords() {
   });
 }
 
-//получение имени мастера для записей 
-function getFullNameMaster(id_master) {
-  $.ajax({
-    url: `/api/beauty_salon/services/master/records/${id_master}`,
-    type: "GET",
-    contentType: "application/json",
-    dataType: 'json',
-    success: function (fullName) {
-      console.log('Запрос Полное имя Мастера: ', fullName);
-      fullNameArrayAdminForAllReviews.push(fullName.name + ' ' + fullName.surname);
-
-    }
-  });
-}
 
 //получение услуг конкретного мастера
 function getServices() {
@@ -352,7 +280,7 @@ function addInformationInnerTableForAllReviews(recordsNew) {
       <td>${recordsNew.number}</td>
       <td>${recordsNew.service}</td>
       <td>${recordsNew.master}</td>
-      <td>${recordsNew.fullName}</td>
+      <td>${recordsNew.client}</td>
       <td>${recordsNew.date}</td>
       <td>${recordsNew.time}</td>
   </tr>

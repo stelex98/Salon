@@ -106,38 +106,65 @@ router.get('/services/master/my-records', (req, res) => {
 	.catch(error => console.log(`Error: ${error}`));
 });
 
+
+let arrFullNameClients = [];
+let arrFullNameMasters = [];
+
 //все записи (для мастера)
 router.get('/services/master/records', (req, res) => {
 	queries.getRecords()
 	.then(data => {
-		res.send(data);
+		data.forEach(record => {
+			addFullNameClients(record, (fullNameClient) => {
+				arrFullNameClients.push(fullNameClient);
+			})
+		});
+
+		data.forEach(record => {
+			addFullNameMasters(record, (fullNameMaster) => {
+				arrFullNameMasters.push(fullNameMaster);
+			})
+		});
+
+		setTimeout(() => {
+			addAllInformation(data, (arr) => {
+				res.send(arr);
+			});	
+		}, 200);
 	})
 	.catch(error => console.log(`Error: ${error}`));
 });
 
+function addFullNameClients(record, callback){
+	queries.getFullName(record.id_profile)
+	.then(data => {
+		callback( data[0].name + " " + data[0].surname);
+	})
+	.catch(error => console.log(`Error: ${error}`));
+}
+
+function addFullNameMasters(record, callback){
+	queries.getFullNameMaster(record.id_master)
+	.then(data => {
+		callback( data[0].name + " " + data[0].surname);
+	})
+	.catch(error => console.log(`Error: ${error}`));
+}
+
+function addAllInformation(data, callback){
+	let arr = [];
+	for( let i = 0; i < data.length; i++){
+		arr.push({
+			service: data[i].service,
+			master: arrFullNameMasters[i],
+			client: arrFullNameClients[i],
+			date: data[i].date,
+			time: data[i].time
+		})
+	}
+	callback(arr);
+}
 //---------------------GET(id)--------------------------
-
-//ФИО клиента для записей мастера/мастеров
-router.get('/services/master/my-records/:id', (req, res) => {
-	console.log(req.params.id)
-	queries.getFullName(req.params.id)
-	.then(data => {
-		console.log(data);
-		res.send(data[0]);
-	})
-	.catch(error => console.log(`Error: ${error}`));
-});
-
-//ФИО мастера для записей мастеров
-router.get('/services/master/records/:id', (req, res) => {
-	//console.log('req: ',req.params.id);
-	queries.getFullNameMaster(req.params.id)
-	.then(data => {
-		res.send(data[0]);
-	})
-	.catch(error => console.log(`Error: ${error}`));
-});
-
 
 router.get('/service/:id', (req, res) => {
 	queries.getOneService(req.params.id)
