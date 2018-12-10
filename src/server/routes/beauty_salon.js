@@ -94,13 +94,25 @@ router.get('/records_client', (req, res) => {
 	.catch(error => console.log(`Error: ${error}`));
 });
 
+
+let arrFullNameClientsForMyRecords = [];
 //записи конкретного мастера
 router.get('/services/master/my-records', (req, res) => {
 	queries.getIdMaster(req.session.key)
 	.then(data => {
 		queries.getRecordsByMaster(data[0].id)
 		.then(data => {
-			res.send(data);
+			data.forEach(record => {
+				addFullNameClients(record, (fullNameClient) => {
+					arrFullNameClientsForMyRecords.push(fullNameClient);
+				})
+			});
+
+			setTimeout(() => {
+				addAllInformationForMyRecords(data, (arr) => {
+					res.send(arr);
+				});	
+			}, 200);
 		})
 	})
 	.catch(error => console.log(`Error: ${error}`));
@@ -158,6 +170,19 @@ function addAllInformation(data, callback){
 			service: data[i].service,
 			master: arrFullNameMasters[i],
 			client: arrFullNameClients[i],
+			date: data[i].date,
+			time: data[i].time
+		})
+	}
+	callback(arr);
+}
+
+function addAllInformationForMyRecords(data, callback){
+	let arr = [];
+	for( let i = 0; i < data.length; i++){
+		arr.push({
+			service: data[i].service,
+			client: arrFullNameClientsForMyRecords[i],
 			date: data[i].date,
 			time: data[i].time
 		})

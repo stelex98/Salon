@@ -192,30 +192,21 @@ var rowFirst = new Vue({
   }
 });
 
-let fullNameArray = [];
 //получение записей конкретного мастера
 function getMyRecords() {
-  fullNameArray.length = 0;
   $.ajax({
     url: "/api/beauty_salon/services/master/my-records",
     type: "GET",
     contentType: "application/json",
     dataType: 'json',
     success: function (records) {
-      let recordsNew = {};
-      let i = 0;
+      clearTable();
+      for (let i = 0; i < records.length; i++) {
+        recordsNew = { 'number': i + 1, 'service': records[i].service, 'client': records[i].client, 'date': records[i].date, 'time': records[i].time };
+        let mineRecordsByAdmin = addInformationInnerTable(recordsNew);
+        $("#myTableTbody").append(mineRecordsByAdmin);
+      }
 
-      $.each(records, (index, record) => {
-        getFullNameClient(record.id_profile)
-      })
-      setTimeout(() => {
-        clearTable();
-        for (i; i < fullNameArray.length; i++) {
-          recordsNew = { 'number': i + 1, 'service': records[i].service, 'fullName': fullNameArray[i], 'date': records[i].date, 'time': records[i].time };
-          let mineRecordsByAdmin = addInformationInnerTable(recordsNew);
-          $("#myTableTbody").append(mineRecordsByAdmin);
-        }
-      }, 100);
       setTimeout(() => {
         inicializate();
         $("#myTable").tablesorter();
@@ -223,20 +214,6 @@ function getMyRecords() {
     }
   });
 }
-
-//получение имени клиента для записей 
-function getFullNameClient(id_profile) {
-  $.ajax({
-    url: `/api/beauty_salon/services/master/my-records/${id_profile}`,
-    type: "GET",
-    contentType: "application/json",
-    dataType: 'json',
-    success: function (fullName) {
-      fullNameArray.push(fullName.name + ' ' + fullName.surname);
-    }
-  });
-}
-
 
 function getRecords() {
   $.ajax({
@@ -252,7 +229,7 @@ function getRecords() {
         let mineRecordsByAdmin = addInformationInnerTableForAllReviews(recordsNew);
         $("#myTable2Tbody").append(mineRecordsByAdmin);
       }
-      
+
       setTimeout(() => {
         inicializate();
         $("#myTable2").tablesorter();
@@ -292,7 +269,7 @@ function addInformationInnerTable(recordsNew) {
   <tr>
       <td>${recordsNew.number}</td>
       <td>${recordsNew.service}</td>
-      <td>${recordsNew.fullName}</td>
+      <td>${recordsNew.client}</td>
       <td>${recordsNew.date}</td>
       <td>${recordsNew.time}</td>
   </tr>
