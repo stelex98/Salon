@@ -304,3 +304,32 @@ function clearTableAllReviews() {
   }
 })();
 
+let reader = new FileReader();
+let uploadImage = function(image) {
+
+    reader.onloadend = function() {
+
+    };
+    reader.readAsDataURL(image);
+};
+
+//для добавления услуги
+/*
+function addService() {
+  $.ajax({
+    url: "/api/beauty_salon/service",
+    type: "POST",
+    contentType: "application/json",
+    data: JSON.stringify({
+        service:  
+        id_group:
+        price:
+        picture:
+        about_service:
+    }),
+    success: function (service) {
+      console.log(service);
+  })
+}
+
+*/

@@ -234,7 +234,15 @@ router.get('/master/:id', (req, res) => {
 //-------------------POST------------------------------
 
 router.post('/service', (req, res) => {
-	queries.addService(req.body)
+	let p = writeImageInFile(req.body.photo);
+	let service = {
+		'service': req.body.service,
+		'id_group': req.body.id_group,
+		'price': req.body.price,
+		'picture': p,
+		'about_service': req.body.about_service
+	}
+	queries.addService(service)
 	.then(data => {
 		res.send(data);
 	})
@@ -339,5 +347,24 @@ router.delete('/record/:id', (req, res) => {
 	.catch(error => console.log(`Error: ${error}`))
 });
 
+
+let writeImageInFile = function (imageBase64_withMetaData) {
+	let num  = 1 - 0.5 + Math.random() * (10000000 - 1 + 1);
+    num = Math.round(num);
+	let acceptType = [ 'png', 'jpg', 'jpeg' ];
+	let typeFile = imageBase64_withMetaData.match(/^data:(.*?)\/([a-z]+);base64,(.+)$/)[2];
+	if(!typeFile || acceptType.indexOf(typeFile) === -1) throw Error();
+	let imageBase64_withoutMetaData = imageBase64_withMetaData.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/)[2];
+	let bitmap = new Buffer(imageBase64_withoutMetaData , 'base64');
+	let pathImage = path.join(path_dir, `service${num}.${typeFile}`);
+	fs.writeFile(pathImage, bitmap, 'base64', function(err) {
+	  if (err) {
+		console.log('Fail', err);
+	  } else {
+		console.log("Success");
+	  }
+	});
+	return "picture/service/" + `service${num}.${typeFile}`;
+  };
 
 module.exports = router;
