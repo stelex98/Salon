@@ -62,7 +62,7 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary();
       table.integer('id_master');
       table.date('date');
-      table.time('time');
+      table.string('time');
       table.foreign('id_master').references('master.id');
     }),
 
