@@ -4,8 +4,8 @@ const queries = require('../db/queries/beauty_salon');
 const path = require('path');
 const fs = require('fs');
 
-//const path_dir = `/media/olga/Work/BSUIR/Salon/public/picture/service/`;
-const path_dir = `/Users/artur/Desktop/Salon/Express/public/picture/service/`;
+const path_dir = `/media/olga/Work/BSUIR/Salon/public/picture/service/`;
+//const path_dir = `/Users/artur/Desktop/Salon/Express/public/picture/service/`;
 //-------------------GET-----------------------------
 
 router.get('/position', (req, res) => {
@@ -329,11 +329,15 @@ router.put('/service/:id', (req, res) => {
 });
 
 router.patch('/service/:id', (req, res) => {
+	if(!(req.body.picture.indexOf('/picture/service') + 1)){
+		let p = writeImageInFile(req.body.picture);
+		req.body.picture = p;
+	}
 	queries.updateService(req.params.id, req.body)
-		.then(data => {
-			res.send(data);
-		})
-		.catch(error => console.log(`Error: ${error}`))
+	.then(data => {
+		res.send(data);
+	})
+	.catch(error => console.log(`Error: ${error}`))
 });
 
 

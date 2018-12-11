@@ -207,7 +207,6 @@ function addRecord(record){
 //----------------UPDATE------------------
 
 function updateService(id, service){
-  console.log(service);
 	return knex.update(service).where({ id: parseInt(id) }).returning('id').into('service');
 }
 

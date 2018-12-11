@@ -17,25 +17,35 @@ function checkButtonToAdd(ev) {
 
   if (checkActionAddOrEdit == 0) {
     console.log('Редактируем');
+    let newService = '';
     let newServices = $('input#services.validate.inputServices')[0].value;
-    let newPrice = $('input#price.validate.inputPrice')[0].value.slice(1);
-    newPrice = parseInt(newPrice);
-    console.log(newPrice);
+    let newPrice = parseInt($('input#price.validate.inputPrice')[0].value.slice(1));
     let newDescribe = $('textarea#describeText.materialize-textarea.inputDescribe')[0].value;
-    console.log(reader.result);
-    // let srcImage =
-    console.log(newServices, newPrice, newDescribe );
-    $.ajax({
-      url: `/api/beauty_salon/service/${id}`,
-      type: "PUT",
-      contentType: "application/json",
-      data: JSON.stringify({
+    if(reader.result){
+      newService = {
         service: newServices,
         id_group: idGroup,
         price: newPrice,
         picture: reader.result,
         about_service: newDescribe
-      }),
+      };
+    }
+    else{
+      let pict = $('input#file.file-path.validate')[0].value;
+      newService = {
+        service: newServices,
+        id_group: idGroup,
+        price: newPrice,
+        picture: pict,
+        about_service: newDescribe
+      };
+    }
+    console.log(newService);
+    $.ajax({
+      url: `/api/beauty_salon/service/${id}`,
+      type: "PATCH",
+      contentType: "application/json",
+      data: JSON.stringify(newService),
       success: function (service) {
         console.log(service);
         location.reload(true);
@@ -75,9 +85,17 @@ function checkButtonToAdd(ev) {
 }
 
 function deleteInformation(ev) {
-  let b = $('#myTable3');
-  let a = ev.path[2];
-  a.remove();
+  id = ev.path[2].dataset.id;
+  $.ajax({
+    url: `/api/beauty_salon/service/${id}`,  ///api/beauty_salon/record/${id}`
+    type: "DELETE",
+    success: function (service) {
+      console.log(service);
+      let b = $('#myTable3');
+      let a = ev.path[2];
+      a.remove();
+    }
+  });
 }
 
 function addNewServices(ev) {

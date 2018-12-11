@@ -42,7 +42,7 @@
                     <a id='addInf' class="addInf" v-on:click="showAddInf" href="#">{{addInf}}</a>
                     <a id='mineReviewsList' class="mineReviewsList" v-on:click="showMineAndAllReviews" href="#">{{mineReviewsList}}</a>
                     <a id='nameAdmin' class="nameAdmin" href="#">{{nameAdmin}}</a>
-                    <a id='exit' class="exit" href="#">{{exit}}</a>
+                    <a id='exit' onclick='return exit(this);' class="exit" href="#">{{exit}}</a>
                 </div>
             </div>
             <div class="main-menu-item">
@@ -198,7 +198,7 @@
                                         <input type="file" accept="image/*" onchange="uploadImage(this.files[0])"multiple="">
                                     </div>
                                     <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+                                        <input id="file" class="file-path validate" type="text" placeholder="Upload one or more files">
                                     </div>
                                 </div>
                             </div>
