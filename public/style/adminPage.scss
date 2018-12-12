@@ -28,21 +28,25 @@ a, th, i{
     float: center;
 }
 
+#test1{
+    padding-left: 0px;
+}
 
 .row {
     .listAdmin {
-        width: 97%;
-        margin-left: 10px;
+        width: 109.5%;
         margin-top: 20px;
         padding-bottom: 20px;
     }
     .mineReviews,
-    .mineSecondReviews, 
     .addInformationTable {
         background-color: white;
+        width: 111.7%;
     }
     .mineSecondReviews {
-        margin-top: 170px;
+        background-color: white;
+        width: 110%;
+        margin-top: 20px;
     }
     width: 60%;
     .reviewsTable {

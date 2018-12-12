@@ -4,8 +4,8 @@ const queries = require('../db/queries/beauty_salon');
 const path = require('path');
 const fs = require('fs');
 
-const path_dir = `/media/olga/Work/BSUIR/Salon/public/picture/service/`;
-//const path_dir = `/Users/artur/Desktop/Salon/Express/public/picture/service/`;
+//const path_dir = `/media/olga/Work/BSUIR/Salon/public/picture/service/`;
+const path_dir = `/Users/artur/Desktop/Salon/Express/public/picture/service/`;
 //-------------------GET-----------------------------
 
 router.get('/position', (req, res) => {

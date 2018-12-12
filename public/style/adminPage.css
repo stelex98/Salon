@@ -24,19 +24,23 @@ a, th, i {
 .mineReviewsList, .nameAdmin {
   float: center; }
 
+#test1 {
+  padding-left: 0px; }
+
 .row {
   width: 60%; }
   .row .listAdmin {
-    width: 97%;
-    margin-left: 10px;
+    width: 109.5%;
     margin-top: 20px;
     padding-bottom: 20px; }
   .row .mineReviews,
-  .row .mineSecondReviews,
   .row .addInformationTable {
-    background-color: white; }
+    background-color: white;
+    width: 111.7%; }
   .row .mineSecondReviews {
-    margin-top: 170px; }
+    background-color: white;
+    width: 110%;
+    margin-top: 20px; }
   .row .reviewsTable {
     margin-left: 10px; }
   .row .scrollDivServices {

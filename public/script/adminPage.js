@@ -308,9 +308,10 @@ function getServices() {
       idGroup = services[0].id_group;
       id = services[0].id;
       console.log(services);
+      clearTableAddInf();
       for (let i = 0; i < services.length; i++) {
         let newRowInformation = addInformationInnerTableInf(services[i].service, services[i].price, services[i].about_service, services[i].picture, services[i].id_group, services[i].id);
-        $('#myTable3').append(newRowInformation);
+        $('#myTbody3').append(newRowInformation);
       }
     }
   });
@@ -354,6 +355,15 @@ function clearTableAllReviews() {
 
   let container = document.getElementById('myTable2Tbody');
 
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+}
+
+function clearTableAddInf() {
+
+  let container = document.getElementById('myTbody3');
+  console.log('1');
   while (container.firstChild) {
     container.removeChild(container.firstChild);
   }

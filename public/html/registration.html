@@ -16,30 +16,31 @@
 
     </style>
 
-        <div class="form-registration-item">
-            <input type="text" class="login-reg" id="login-reg" placeholder="Login" >
-            <input type="password" class="password-reg" id="password-reg" placeholder="Password" >
-            <input type="password" class="password_repeat-reg" id="password_repeat-reg" placeholder="Password repeat" >
-            <input type="text" class="name-reg" id="name-reg" placeholder="Name" >
-            <input type="text" class="surname-reg" id="surname-reg" placeholder="Surname" >
-            <input type="date" class="date_birth-reg" id="date_birth-reg" placeholder="Date of birthday" >
-            <input type="text" class="mail-reg" id="mail-reg" placeholder="Mail" >
-            <input type="text" class="phone-reg" id="phone-reg" placeholder="Phone" >
-            <input type="file" class="photo-reg" id="photo-reg" name="photo-reg" accept="image/*" onchange="uploadImage(this.files[0])" placeholder="Photo" data-multiple-caption="{count} files selected" multiple >
-            <label for="photo-reg"><strong>Выберите фотографию</strong></label>
-            <button class="registration-start" onclick='registration_block()'>Зарегистрироваться</button>
-            <button class="registration-cancel" onclick='back()'>Отмена</button>
-        </div>
+    <div class="form-registration-item">
+        <input type="text" class="login-reg" id="login-reg" placeholder="Login">
+        <input type="password" class="password-reg" id="password-reg" placeholder="Password">
+        <input type="password" class="password_repeat-reg" id="password_repeat-reg" placeholder="Password repeat">
+        <input type="text" class="name-reg" id="name-reg" placeholder="Name">
+        <input type="text" class="surname-reg" id="surname-reg" placeholder="Surname">
+        <input type="date" class="date_birth-reg" id="date_birth-reg" placeholder="Date of birthday">
+        <input type="text" class="mail-reg" id="mail-reg" placeholder="Mail">
+        <input type="text" class="phone-reg" id="phone-reg" placeholder="Phone">
+        <input type="file" class="photo-reg" id="photo-reg" name="photo-reg" accept="image/*" onchange="uploadImage(this.files[0])"
+            placeholder="Photo" data-multiple-caption="{count} files selected" multiple>
+        <label for="photo-reg"><strong>Выберите фотографию</strong></label>
+        <button class="registration-start" onclick='registration_block()'>Зарегистрироваться</button>
+        <button class="registration-cancel" onclick='back()'>Отмена</button>
+    </div>
 
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-<script>
-	function back() {
-		window.location = 'localhost:3010';
-	}
-</script>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script>
+        function back() {
+            window.location = 'localhost:3010';
+        }
+    </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
-<script src="../script/registration.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.min.js"></script>
+    <script src="../script/registration.js"></script>
 
 </body>
 

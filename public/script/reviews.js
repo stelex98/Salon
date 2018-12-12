@@ -135,7 +135,7 @@ function linkAccount(login){
     let logout = `<a class='user-account' onclick='return exit(this);'>Выход</a>
     <style>
         .user-account{
-            color: #980FA0;
+            color: white;
             margin-left: 20%;
             display: inline-block;
             font-family: 'Open Sans', sans-serif
@@ -153,7 +153,7 @@ function linkSetting(){
     let logout = `<a class='admin-block' onclick='return exit(this);'>Выход</a>
     <style>
         .admin-block{
-            color: #980FA0;
+            color: white;
             margin-left: 20%;
             display: inline-block;
             font-family: 'Open Sans', sans-serif

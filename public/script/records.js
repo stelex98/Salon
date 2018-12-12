@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 $(document).ready(function() {
     getServices();
-
 });
 
 function getServices() {
@@ -77,12 +76,10 @@ function addOptionMaster(master){
     `;
 }
 
-function  onchangeMasterSelect(){
+function onchangeMasterSelect(){
     $('.row.first').html('');
     $(".datepicker.date").val('');
     let id_master = $(".master-select").val();
-    console.log('id_master ', id_master);
-
 }
 
 
